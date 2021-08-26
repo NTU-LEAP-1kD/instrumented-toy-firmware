@@ -1,8 +1,13 @@
 #include <Arduino.h>
+#include "config/config.h"
+#include "comms/tasks.h"
+#include "sensors/tasks.h"
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(115200);
+  initUSB();
+  initBLE();
+  initIMU();
 }
 
 void loop() {
