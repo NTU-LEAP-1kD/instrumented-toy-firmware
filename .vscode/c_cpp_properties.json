@@ -1,0 +1,60 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "c:/Git/School/instrumented-toy-firmware/include",
+                "c:/Git/School/instrumented-toy-firmware/src",
+                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino",
+                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS",
+                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge",
+                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api",
+                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api/api/depricated",
+                "C:/Users/vicgd/.platformio/packages/tool-unity",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "c:/Git/School/instrumented-toy-firmware/include",
+                    "c:/Git/School/instrumented-toy-firmware/src",
+                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino",
+                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS",
+                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge",
+                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api",
+                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api/api/depricated",
+                    "C:/Users/vicgd/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=50101",
+                "ARDUINO_APOLLO3_SFE_ARTEMIS",
+                "MBED_NO_GLOBAL_USING_DIRECTIVE",
+                "ARDUINO=10811",
+                "ARDUINO_ARCH_APOLLO3ARDUINO_ARCH_MBED",
+                "MBED_NO_GLOBAL_USING_DIRECTIVE",
+                "CORDIO_ZERO_COPY_HCI",
+                ""
+            ],
+            "forcedInclude": [
+                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS/mbed/mbed_config.h",
+                ""
+            ],
+            "compilerPath": "C:/Users/vicgd/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc.exe",
+            "compilerArgs": [
+                "-iprefixC:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/",
+                "@C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS/mbed/.c-flags",
+                "@C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS/mbed/.includes",
+                "@C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS/mbed/.c-symbols",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
