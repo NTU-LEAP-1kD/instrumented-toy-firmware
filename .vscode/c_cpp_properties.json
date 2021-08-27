@@ -10,13 +10,14 @@
             "includePath": [
                 "c:/Git/School/instrumented-toy-firmware/include",
                 "c:/Git/School/instrumented-toy-firmware/src",
+                "c:/Git/School/instrumented-toy-firmware/lib/IMU/src",
+                "c:/Git/School/instrumented-toy-firmware/lib/BLE/src",
+                "c:/Git/School/instrumented-toy-firmware",
                 "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino",
                 "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS",
                 "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge",
                 "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api",
-                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api/api/depricated",
-                "c:/Git/School/instrumented-toy-firmware/lib/BLE/src",
-                "c:/Git/School/instrumented-toy-firmware/lib/IMU/src",
+                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api/api/deprecated",
                 "C:/Users/vicgd/.platformio/packages/tool-unity",
                 ""
             ],
@@ -25,13 +26,14 @@
                 "path": [
                     "c:/Git/School/instrumented-toy-firmware/include",
                     "c:/Git/School/instrumented-toy-firmware/src",
+                    "c:/Git/School/instrumented-toy-firmware/lib/IMU/src",
+                    "c:/Git/School/instrumented-toy-firmware/lib/BLE/src",
+                    "c:/Git/School/instrumented-toy-firmware",
                     "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino",
                     "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS",
                     "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge",
                     "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api",
-                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api/api/depricated",
-                    "c:/Git/School/instrumented-toy-firmware/lib/BLE/src",
-                    "c:/Git/School/instrumented-toy-firmware/lib/IMU/src",
+                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api/api/deprecated",
                     "C:/Users/vicgd/.platformio/packages/tool-unity",
                     ""
                 ]
@@ -41,7 +43,8 @@
                 "ARDUINO_APOLLO3_SFE_ARTEMIS",
                 "MBED_NO_GLOBAL_USING_DIRECTIVE",
                 "ARDUINO=10811",
-                "ARDUINO_ARCH_APOLLO3ARDUINO_ARCH_MBED",
+                "ARDUINO_ARCH_APOLLO3",
+                "ARDUINO_ARCH_MBED",
                 "MBED_NO_GLOBAL_USING_DIRECTIVE",
                 "CORDIO_ZERO_COPY_HCI",
                 ""

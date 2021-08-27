@@ -2,3 +2,5 @@
 
 void initBLE(); 
 void initUSB();
+
+void loopTaskPrintBlePeripherals();

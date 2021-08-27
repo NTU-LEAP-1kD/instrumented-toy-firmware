@@ -12,6 +12,5 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  static int64_t i;
-  Serial.println(i++);
+  loopTaskPrintBlePeripherals();
 }
