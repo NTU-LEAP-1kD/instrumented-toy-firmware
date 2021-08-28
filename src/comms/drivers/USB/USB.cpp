@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include "USB.h"
+#include "config/config.h"
 
 void initUSB(){
-    Serial.begin(USB_BAUDRATE);
+    Serial.begin(settings.serialTerminalBaudRate);
 }
