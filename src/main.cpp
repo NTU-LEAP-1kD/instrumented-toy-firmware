@@ -8,9 +8,11 @@ void setup() {
   initUSB();
   initBLE();
   initIMU();
+  Serial.println("x\ty\tz");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  loopTaskPrintBlePeripherals();
+  loopTaskLogImu();
+  //loopTaskPrintBlePeripherals();
 }

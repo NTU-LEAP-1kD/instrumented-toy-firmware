@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include "ICM_20948.h"
 #include "config/config.h"
+#include "utils/utils.h"
 #include "imu.h"
 
 ICM_20948_SPI myICM;
-icm_20948_DMP_data_t dmpData; // Global storage for the DMP data - extracted from the FIFO
 
 void initIMU()
 {
@@ -205,5 +205,36 @@ void initIMU()
     //Power down IMU
     imuPowerOff();
     online.IMU = false;
+  }
+}
+
+void loopTaskLogImu(){
+  icm_20948_DMP_data_t dmpData; 
+  struct Vector3D vector_3d;
+
+  myICM.readDMPdataFromFIFO(&dmpData);
+  
+  if ((myICM.status == ICM_20948_Stat_Ok) || (myICM.status == ICM_20948_Stat_FIFOMoreDataAvail)) // Was valid data available?
+  {
+    if ((dmpData.header & DMP_header_bitmap_Quat9) > 0) // We have asked for orientation data so we should receive Quat9
+    {
+    /*
+    Serial.print(millis());
+    Serial.write('\t');
+    */
+    double q1 = ((double)dmpData.Quat9.Data.Q1) / 1073741824.0; // Convert to double. Divide by 2^30
+    double q2 = ((double)dmpData.Quat9.Data.Q2) / 1073741824.0; // Convert to double. Divide by 2^30
+    double q3 = ((double)dmpData.Quat9.Data.Q3) / 1073741824.0; // Convert to double. Divide by 2^30
+    double q0 = sqrt(1.0 - ((q1 * q1) + (q2 * q2) + (q3 * q3)));
+    
+    vector_3d = toEuler(q0,q1,q2,q3);
+
+    csvPrint(vector_3d.x);
+    csvPrint(vector_3d.y);
+    csvPrint(vector_3d.z);
+    //csvPrint(dmpData.Quat9.Data.Accuracy);
+
+    Serial.write('\n');
+    }
   }
 }
