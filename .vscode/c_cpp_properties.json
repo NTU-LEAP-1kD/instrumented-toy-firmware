@@ -14,7 +14,7 @@
                 "c:/Git/School/instrumented-toy-firmware/lib/BLE/src",
                 "c:/Git/School/instrumented-toy-firmware",
                 "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino",
-                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS",
+                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS_ATP",
                 "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge",
                 "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api",
                 "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api/api/deprecated",
@@ -30,7 +30,7 @@
                     "c:/Git/School/instrumented-toy-firmware/lib/BLE/src",
                     "c:/Git/School/instrumented-toy-firmware",
                     "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino",
-                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS",
+                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS_ATP",
                     "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge",
                     "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api",
                     "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/arduino/mbed-bridge/core-api/api/deprecated",
@@ -40,7 +40,8 @@
             },
             "defines": [
                 "PLATFORMIO=50101",
-                "ARDUINO_APOLLO3_SFE_ARTEMIS",
+                "ICM_20948_USE_DMP",
+                "ARDUINO_APOLLO3_SFE_ARTEMIS_ATP",
                 "MBED_NO_GLOBAL_USING_DIRECTIVE",
                 "ARDUINO=10811",
                 "ARDUINO_ARCH_APOLLO3",
@@ -50,15 +51,15 @@
                 ""
             ],
             "forcedInclude": [
-                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS/mbed/mbed_config.h",
+                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS_ATP/mbed/mbed_config.h",
                 ""
             ],
             "compilerPath": "C:/Users/vicgd/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc.exe",
             "compilerArgs": [
                 "-iprefixC:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/cores/",
-                "@C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS/mbed/.c-flags",
-                "@C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS/mbed/.includes",
-                "@C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS/mbed/.c-symbols",
+                "@C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS_ATP/mbed/.c-flags",
+                "@C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS_ATP/mbed/.includes",
+                "@C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/variants/SFE_ARTEMIS_ATP/mbed/.c-symbols",
                 ""
             ]
         }
