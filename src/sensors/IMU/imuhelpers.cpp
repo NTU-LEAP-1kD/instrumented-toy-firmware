@@ -1,5 +1,7 @@
 #include <Arduino.h>
+#include <SPI.h>
 #include "config/config.h"
+#include "imu.h"
 
 void imuPowerOn()
 {
@@ -36,3 +38,29 @@ bool enableCIPOpullUp()
   return (retval == AP3_OK);
 }
 #endif
+
+void configureImuPins(){
+  SPI.begin();
+  pinMode(PIN_IMU_POWER, OUTPUT);
+  pin_config(PinName(PIN_IMU_POWER), g_AM_HAL_GPIO_OUTPUT); // Make sure the pin does actually get re-configured
+  pinMode(PIN_IMU_CHIP_SELECT, OUTPUT);
+  pin_config(PinName(PIN_IMU_CHIP_SELECT), g_AM_HAL_GPIO_OUTPUT); // Make sure the pin does actually get re-configured
+  digitalWrite(PIN_IMU_CHIP_SELECT, HIGH); //Be sure IMU is deselected
+
+  enableCIPOpullUp(); // Enable CIPO pull-up on the OLA
+
+  //There is a quirk in v2.1 of the Apollo3 mbed core which means that the first SPI transaction will
+  //disable the pull-up on CIPO. We need to do a fake transaction and then re-enable the pull-up
+  //to work around this...
+  #if defined(ARDUINO_ARCH_MBED)
+  SPI.beginTransaction(SPISettings(1000000, MSBFIRST, SPI_MODE0)); // Do a fake transaction
+  SPI.endTransaction();
+  enableCIPOpullUp(); // Re-enable the CIPO pull-up
+  #endif
+
+  //Reset ICM by power cycling it
+  imuPowerOff();
+  delay(100);
+  imuPowerOn();
+  delay(100); //Allow ICM to come online. Typical is 11ms. Max is 100ms. https://cdn.sparkfun.com/assets/7/f/e/c/d/DS-000189-ICM-20948-v1.3.pdf
+}
