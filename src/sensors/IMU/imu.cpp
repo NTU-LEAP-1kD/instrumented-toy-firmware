@@ -218,10 +218,6 @@ void loopTaskLogImu(){
   {
     if ((dmpData.header & DMP_header_bitmap_Quat9) > 0) // We have asked for orientation data so we should receive Quat9
     {
-    /*
-    Serial.print(millis());
-    Serial.write('\t');
-    */
     double q1 = ((double)dmpData.Quat9.Data.Q1) / 1073741824.0; // Convert to double. Divide by 2^30
     double q2 = ((double)dmpData.Quat9.Data.Q2) / 1073741824.0; // Convert to double. Divide by 2^30
     double q3 = ((double)dmpData.Quat9.Data.Q3) / 1073741824.0; // Convert to double. Divide by 2^30
@@ -229,12 +225,13 @@ void loopTaskLogImu(){
     
     vector_3d = toEuler(q0,q1,q2,q3);
 
-    csvPrint(vector_3d.x);
-    csvPrint(vector_3d.y);
-    csvPrint(vector_3d.z);
-    //csvPrint(dmpData.Quat9.Data.Accuracy);
-
-    Serial.write('\n');
+    if(settings.outputSerial){
+      csvPrint(vector_3d.x);
+      csvPrint(vector_3d.y);
+      csvPrint(vector_3d.z);
+      //csvPrint(dmpData.Quat9.Data.Accuracy);
+      Serial.write('\n');
+    }
     }
   }
 }
