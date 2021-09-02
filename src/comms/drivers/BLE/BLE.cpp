@@ -49,6 +49,9 @@ void blePeripheralConnectHandler(BLEDevice central) {
   // central connected event handler
   Serial.print("Connected event, central: ");
   Serial.println(central.address());
+
+  if(!central.discoverAttributes() || !central.discoverService(CTS_SERVICE)) return;
+  readCurrentTimeService(central.service(CTS_SERVICE));
 }
 
 void blePeripheralDisconnectHandler(BLEDevice central) {
@@ -63,4 +66,16 @@ void switchCharacteristicWritten(BLEDevice central, BLECharacteristic characteri
   Serial.print(switchCharacteristic.value());
   
   settings.outputSerial = switchCharacteristic.value();
+}
+
+void readCurrentTimeService(BLEService currentTimeService){
+  if(!currentTimeService || !currentTimeService.hasCharacteristic(CTS_CHAR_ID)) return;
+
+  Serial.print("Current Time:");
+  uint8_t time_buf[10];
+  currentTimeService.characteristic(CTS_CHAR_ID).readValue(time_buf,10);
+  printData(time_buf, 10);
+  Serial.write('\t');
+  Serial.print(millis());
+  Serial.write('\n');
 }
