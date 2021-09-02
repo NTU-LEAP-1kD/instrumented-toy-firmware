@@ -72,9 +72,9 @@ void readCurrentTimeService(BLEService currentTimeService){
   if(!currentTimeService || !currentTimeService.hasCharacteristic(CTS_CHAR_ID)) return;
 
   Serial.print("Current Time:");
-  uint8_t time_buf[10];
-  currentTimeService.characteristic(CTS_CHAR_ID).readValue(time_buf,10);
-  printData(time_buf, 10);
+  uint8_t time_buf[CTS_TIME_BUF_LEN];
+  currentTimeService.characteristic(CTS_CHAR_ID).readValue(time_buf,CTS_TIME_BUF_LEN);
+  printData(time_buf, CTS_TIME_BUF_LEN);
   Serial.write('\t');
   Serial.print(millis());
   Serial.write('\n');
