@@ -1,7 +1,7 @@
 #include <ArduinoBLE.h>
 #include "BLE.h"
 
-//From PeripheralExplorer Example
+//Functions from PeripheralExplorer Example
 
 void exploreService(BLEService service) {
   // print the UUID of the service

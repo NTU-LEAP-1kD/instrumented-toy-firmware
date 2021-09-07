@@ -1,0 +1,28 @@
+#pragma once
+
+#include <Arduino.h>
+
+const uint16_t CTS_YEAR_OFFSET = 1794;
+const uint16_t CTS_START_YEAR = 2021;
+
+struct current_time_t{
+  uint16_t year; //since 1794
+  uint8_t month;
+  uint8_t day;
+  uint8_t hours;
+  uint8_t minutes;
+  uint8_t seconds;
+  uint8_t day_of_week;
+  uint8_t frac_seconds;
+  uint8_t adjust_reason;
+};
+
+union cts_time_t{
+    uint8_t buf[sizeof(current_time_t)];
+    current_time_t time; 
+};
+
+uint32_t ctsMillis(current_time_t ct);
+void subscribeToCurrentTimeService(BLEService cts_svc);
+void readCurrentTimeService(BLEService cts_svc);
+void loopTaskReadCts();
