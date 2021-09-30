@@ -14,6 +14,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  current_ms = millis();
   loopTaskLogImu();
   loopTaskPollBle();
   loopTaskReadCts();

@@ -102,3 +102,4 @@ struct struct_online {
 
 extern struct_settings settings;
 extern struct_online online; 
+extern uint64_t current_ms;
