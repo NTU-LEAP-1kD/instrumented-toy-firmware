@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Arduino.h>
+#include <ArduinoBLE.h>
 
 const uint16_t CTS_YEAR_OFFSET = 1794;
 const uint16_t CTS_START_YEAR = 2021;
@@ -22,7 +22,9 @@ union cts_time_t{
     current_time_t time; 
 };
 
-uint32_t ctsMillis(current_time_t ct);
+extern cts_time_t received_cts_time; 
+
+uint64_t ctsMillis(current_time_t ct);
 void subscribeToCurrentTimeService(BLEService cts_svc);
-void readCurrentTimeService(BLEService cts_svc);
+bool readCurrentTimeService(BLEService cts_svc);
 void loopTaskReadCts();
