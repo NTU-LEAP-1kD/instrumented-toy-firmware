@@ -14,9 +14,7 @@ void initIMU()
   uint8_t count = 1; 
   while(count){
     myICM.begin(PIN_IMU_CHIP_SELECT, SPI, 4000000);
-    Serial.println(myICM.statusString(myICM.status));
     if(myICM.status == ICM_20948_Stat_Ok){
-      Serial.println("Success!");
       break;
     }
     if(count++ > MAX_IMU_SETUP_ATTEMPTS){

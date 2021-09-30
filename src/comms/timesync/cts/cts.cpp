@@ -2,6 +2,7 @@
 
 #include "config/config.h"
 #include "comms/drivers/BLE/BLE.h"
+#include "logging/rtc/rtc.h"
 #include "utils/utils.h"
 #include "cts.h"
 
@@ -9,15 +10,16 @@ cts_time_t received_cts_time;
 
 void loopTaskReadCts(){ 
     static uint64_t offset; 
-    if(millis()%200 == 0){
+    if(millis()%10 == 0){
         BLEDevice central = BLE.central();
         if (readCurrentTimeService(central.service(CTS_SERVICE))){;
             if(offset == 0){
-                offset = ctsMillis(received_cts_time.time) - millis();
-                Serial.print("Wrote offset");
-                Serial.println(offset);
+                setRtc(received_cts_time.time); 
+                offset = ctsMillis(received_cts_time.time) - rtcMillis();
             }
-            Serial.println((int64_t)ctsMillis(received_cts_time.time) - (offset + millis()));  
+            int64_t diff = ctsMillis(received_cts_time.time) - (offset + rtcMillis());
+            if(diff) Serial.println(diff); 
+            else Serial.println('0');
         }
     }
 }
@@ -58,9 +60,8 @@ bool readCurrentTimeService(BLEService cts_svc){
     max_rtt = max(rtt, max_rtt);
     sum_rtt += rtt;
     ++count;
+
     /*
-    Serial.print(rtt);
-    Serial.write('\t');
     Serial.print(min_rtt);
     Serial.write('\t');
     Serial.print(max_rtt);
@@ -72,6 +73,9 @@ bool readCurrentTimeService(BLEService cts_svc){
     */
 
     digitalWrite(PIN_STAT_LED, !digitalRead(PIN_STAT_LED));
+    if(rtt >= 80) return 0;
+    Serial.print(rtt);
+    Serial.write('\t');
     return 1;
 }
 

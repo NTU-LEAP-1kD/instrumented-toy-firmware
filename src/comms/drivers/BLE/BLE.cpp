@@ -38,7 +38,7 @@ void initBLE(){
   // start advertising
   BLE.advertise();
 
-  Serial.println(("Bluetooth device active, waiting for connections..."));
+  //Serial.println(("Bluetooth device active, waiting for connections..."));
 }
 
 void loopTaskPollBle(){
@@ -47,8 +47,10 @@ void loopTaskPollBle(){
 
 void blePeripheralConnectHandler(BLEDevice central) {
   // central connected event handler
+  /*
   Serial.print("Connected event, central: ");
   Serial.println(central.address());
+  */
 
   BLE.setConnectionInterval(CONNECTION_INTERVAL_MIN,CONNECTION_INTERVAL_MAX);
 
@@ -59,6 +61,7 @@ void blePeripheralConnectHandler(BLEDevice central) {
 
 void blePeripheralDisconnectHandler(BLEDevice central) {
   // central disconnected event handler
+  
   Serial.print("Disconnected event, central: ");
   Serial.println(central.address());
 }

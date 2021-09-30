@@ -9,7 +9,7 @@ void setup() {
   initBLE();
   initIMU();
   pinMode(PIN_STAT_LED, OUTPUT);
-  Serial.println("x\ty\tz");
+  Serial.println("RTT\tTime_Diff");
 }
 
 void loop() {
