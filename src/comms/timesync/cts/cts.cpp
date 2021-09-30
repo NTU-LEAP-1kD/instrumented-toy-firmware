@@ -7,20 +7,16 @@
 #include "cts.h"
 
 cts_time_t received_cts_time; 
+uint32_t rtt; 
 
 void loopTaskReadCts(){ 
-    static uint64_t offset; 
-    if(millis()%10 == 0){
+    static uint32_t prev_read_ms; 
+    if(current_ms - prev_read_ms > CTS_READ_INTERVAL){
         BLEDevice central = BLE.central();
-        if (readCurrentTimeService(central.service(CTS_SERVICE))){;
-            if(offset == 0){
-                setRtc(received_cts_time.time); 
-                offset = ctsMillis(received_cts_time.time) - rtcMillis();
-            }
-            int64_t diff = ctsMillis(received_cts_time.time) - (offset + rtcMillis());
-            if(diff) Serial.println(diff); 
-            else Serial.println('0');
+        if(readCurrentTimeService(central.service(CTS_SERVICE))){
+            prev_read_ms = current_ms + rtt;
         }
+        current_ms += rtt;
     }
 }
 
@@ -45,9 +41,7 @@ void subscribeToCurrentTimeService(BLEService cts_svc){
 bool readCurrentTimeService(BLEService cts_svc){
     if(!cts_svc || !cts_svc.hasCharacteristic(CTS_CHAR_ID)) return 0;
     static BLECharacteristic cts_char = cts_svc.characteristic(CTS_CHAR_ID);
-    static int32_t min_rtt = 1000;
-    static int32_t max_rtt, sum_rtt, count;
-    uint32_t ms1,ms2,rtt;
+    uint32_t ms1,ms2;
 
     ms1 = millis(); 
     cts_char.read();
@@ -55,27 +49,10 @@ bool readCurrentTimeService(BLEService cts_svc){
     if(cts_char.valueSize() != sizeof(cts_time_t)) return 0;
     memcpy(received_cts_time.buf,cts_char.value(),sizeof(cts_time_t));
     rtt = (ms2 - ms1);
-    
-    min_rtt = min(rtt, min_rtt); 
-    max_rtt = max(rtt, max_rtt);
-    sum_rtt += rtt;
-    ++count;
-
-    /*
-    Serial.print(min_rtt);
-    Serial.write('\t');
-    Serial.print(max_rtt);
-    Serial.write('\t');
-    Serial.print((float)sum_rtt/count);
-    Serial.write('\t');
-    Serial.print(ctsMillis(received_cts_time.time));
-    Serial.write('\n');
-    */
 
     digitalWrite(PIN_STAT_LED, !digitalRead(PIN_STAT_LED));
-    if(rtt >= 80) return 0;
-    Serial.print(rtt);
-    Serial.write('\t');
+    if(rtt >= MAX_CTS_RTT) return 0;
     return 1;
 }
+
 

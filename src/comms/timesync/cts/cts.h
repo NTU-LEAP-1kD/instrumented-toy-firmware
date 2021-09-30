@@ -5,6 +5,9 @@
 const uint16_t CTS_YEAR_OFFSET = 1794;
 const uint16_t CTS_START_YEAR = 2021;
 
+const uint32_t MAX_CTS_RTT = 80;
+const uint32_t CTS_READ_INTERVAL = 100; 
+
 struct current_time_t{
   uint16_t year; //since 1794
   uint8_t month;
