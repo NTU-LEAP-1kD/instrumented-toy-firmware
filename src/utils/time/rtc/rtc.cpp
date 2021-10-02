@@ -1,15 +1,27 @@
 #include <RTC.h>
 #include "comms/timesync/cts/cts.h"
-#include "utils/utils.h"
+#include "utils/time/time.h"
 #include "rtc.h"
 
 Apollo3RTC myRTC;
 
+/*
+Since the RTC runs on 100Hz clock, it returns time in increments of 10ms
+ms_offset holds the 1ms decimal place
+*/
+static uint8_t ms_offset; 
+
 void setRtc(current_time_t time){
-    myRTC.getTime();
-    int dd = time.day, mm = time.month, yy = time.year + CTS_YEAR_OFFSET, h = time.hours, m = time.minutes, s = time.seconds;
-    int ms_10 = ((int)time.frac_seconds * 100) / 256; //millis divided by 10;
-    myRTC.setTime(ms_10, s, m, h, dd, mm, yy);
+  myRTC.getTime();
+  int dd = time.day, mm = time.month, yy = time.year + CTS_YEAR_OFFSET, h = time.hours, m = time.minutes, s = time.seconds;
+  int ms = ((int)time.frac_seconds * 1000) / 256 ;
+  int ms_10 = ms / 10; 
+  ms_offset = ms % 10; 
+  myRTC.setTime(ms_10, s, m, h, dd, mm, yy);
+}
+
+void setRtcToCompilerTime(){
+  myRTC.setToCompilerTime();
 }
 
 //Returns the number of milliseconds according to the RTC
@@ -25,6 +37,7 @@ uint64_t rtcMillis()
   millisToday += ((uint64_t)myRTC.minute * 60000ULL);
   millisToday += ((uint64_t)myRTC.seconds * 1000ULL);
   millisToday += ((uint64_t)myRTC.hundredths * 10ULL);
+  millisToday += ((uint64_t)ms_offset); 
 
   return (millisToday);
 }

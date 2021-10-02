@@ -5,8 +5,8 @@
 const uint16_t CTS_YEAR_OFFSET = 1794;
 const uint16_t CTS_START_YEAR = 2021;
 
-const uint32_t MAX_CTS_RTT = 80;
-const uint32_t CTS_READ_INTERVAL = 100; 
+const uint32_t MAX_CTS_RTT = 100;
+const uint32_t CTS_READ_INTERVAL = 200; 
 
 struct current_time_t{
   uint16_t year; //since 1794
@@ -25,7 +25,8 @@ union cts_time_t{
     current_time_t time; 
 };
 
-extern cts_time_t received_cts_time; 
+extern cts_time_t received_cts; 
+extern uint64_t received_cts_timestamp_millis;
 
 uint64_t ctsMillis(current_time_t ct);
 void subscribeToCurrentTimeService(BLEService cts_svc);

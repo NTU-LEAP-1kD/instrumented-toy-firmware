@@ -2,11 +2,13 @@
 
 #include "config/config.h"
 #include "comms/drivers/BLE/BLE.h"
-#include "logging/rtc/rtc.h"
-#include "utils/utils.h"
+#include "comms/timesync/rtcSync/rtcSync.h"
+#include "utils/time/rtc/rtc.h"
+#include "utils/time/time.h"
 #include "cts.h"
 
-cts_time_t received_cts_time; 
+cts_time_t received_cts; 
+uint64_t received_cts_timestamp_millis; 
 uint32_t rtt; 
 
 void loopTaskReadCts(){ 
@@ -15,21 +17,10 @@ void loopTaskReadCts(){
         BLEDevice central = BLE.central();
         if(readCurrentTimeService(central.service(CTS_SERVICE))){
             prev_read_ms = current_ms + rtt;
+            received_cts_timestamp_millis = current_ms + (rtt/2);
         }
-        current_ms += rtt;
+        current_ms = millis();
     }
-}
-
-uint64_t ctsMillis(current_time_t ct){
-    uint64_t ms = 0;
-    int dayOfYear = calculateDayOfYear(ct.day, ct.month, ct.year + CTS_YEAR_OFFSET);
-    ms += ((uint64_t)dayOfYear * 86400000ULL);
-    ms += ((uint64_t)ct.hours * 3600000ULL);
-    ms += ((uint64_t)ct.minutes * 60000ULL);
-    ms += ((uint64_t)ct.seconds * 1000ULL);
-    ms += ((uint64_t)(ct.frac_seconds * 1000)/256);
-
-    return (ms);
 }
 
 void subscribeToCurrentTimeService(BLEService cts_svc){
@@ -46,12 +37,12 @@ bool readCurrentTimeService(BLEService cts_svc){
     ms1 = millis(); 
     cts_char.read();
     ms2 = millis();
-    if(cts_char.valueSize() != sizeof(cts_time_t)) return 0;
-    memcpy(received_cts_time.buf,cts_char.value(),sizeof(cts_time_t));
     rtt = (ms2 - ms1);
 
-    digitalWrite(PIN_STAT_LED, !digitalRead(PIN_STAT_LED));
     if(rtt >= MAX_CTS_RTT) return 0;
+    if(cts_char.valueSize() != sizeof(cts_time_t)) return 0;
+
+    memcpy(received_cts.buf,cts_char.value(),sizeof(cts_time_t));
     return 1;
 }
 

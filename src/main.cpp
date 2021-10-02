@@ -8,8 +8,9 @@ void setup() {
   initUSB();
   initBLE();
   initIMU();
+  initTaskSyncRtc();
   pinMode(PIN_STAT_LED, OUTPUT);
-  Serial.println("RTT\tTime_Diff");
+  Serial.println("Reading\tEMA");
 }
 
 void loop() {
@@ -18,4 +19,5 @@ void loop() {
   loopTaskLogImu();
   loopTaskPollBle();
   loopTaskReadCts();
+  loopTaskSyncRtc(); 
 }
