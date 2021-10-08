@@ -1,7 +1,7 @@
 #pragma once 
 #include "comms/timesync/cts/cts.h"
 
-const uint16_t timesync_update_filter_factor = 255;
+const uint16_t timesync_update_filter_factor = 999;
 
 void initTaskSyncRtc();
 void loopTaskSyncRtc();

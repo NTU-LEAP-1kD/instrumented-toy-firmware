@@ -38,7 +38,7 @@ void setSyncedMillis(){
 }
 
 void updateTimesyncRtcOffset(int64_t new_offset){
-    static uint16_t remainder;
+    static int64_t remainder;
     if(timesync_rtc_offset == 0){
         timesync_rtc_offset = new_offset; 
     } 
