@@ -3,4 +3,7 @@
 void initBLE(); 
 void initUSB();
 
-void loopTaskPrintBlePeripherals();
+void initTaskSyncRtc();
+void loopTaskSyncRtc();
+void loopTaskPollBle();
+void loopTaskReadCts();

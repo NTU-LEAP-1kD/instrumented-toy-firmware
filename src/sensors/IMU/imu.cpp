@@ -14,9 +14,7 @@ void initIMU()
   uint8_t count = 1; 
   while(count){
     myICM.begin(PIN_IMU_CHIP_SELECT, SPI, 4000000);
-    Serial.println(myICM.statusString(myICM.status));
     if(myICM.status == ICM_20948_Stat_Ok){
-      Serial.println("Success!");
       break;
     }
     if(count++ > MAX_IMU_SETUP_ATTEMPTS){
@@ -218,10 +216,6 @@ void loopTaskLogImu(){
   {
     if ((dmpData.header & DMP_header_bitmap_Quat9) > 0) // We have asked for orientation data so we should receive Quat9
     {
-    /*
-    Serial.print(millis());
-    Serial.write('\t');
-    */
     double q1 = ((double)dmpData.Quat9.Data.Q1) / 1073741824.0; // Convert to double. Divide by 2^30
     double q2 = ((double)dmpData.Quat9.Data.Q2) / 1073741824.0; // Convert to double. Divide by 2^30
     double q3 = ((double)dmpData.Quat9.Data.Q3) / 1073741824.0; // Convert to double. Divide by 2^30
@@ -229,12 +223,13 @@ void loopTaskLogImu(){
     
     vector_3d = toEuler(q0,q1,q2,q3);
 
-    csvPrint(vector_3d.x);
-    csvPrint(vector_3d.y);
-    csvPrint(vector_3d.z);
-    //csvPrint(dmpData.Quat9.Data.Accuracy);
-
-    Serial.write('\n');
+    if(settings.outputSerial){
+      csvPrint(vector_3d.x);
+      csvPrint(vector_3d.y);
+      csvPrint(vector_3d.z);
+      //csvPrint(dmpData.Quat9.Data.Accuracy);
+      Serial.write('\n');
+    }
     }
   }
 }

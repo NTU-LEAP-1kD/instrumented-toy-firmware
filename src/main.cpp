@@ -8,11 +8,16 @@ void setup() {
   initUSB();
   initBLE();
   initIMU();
-  Serial.println("x\ty\tz");
+  initTaskSyncRtc();
+  pinMode(PIN_STAT_LED, OUTPUT);
+  Serial.println("Reading\tEMA");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  current_ms = millis();
   loopTaskLogImu();
-  //loopTaskPrintBlePeripherals();
+  loopTaskPollBle();
+  loopTaskReadCts();
+  loopTaskSyncRtc(); 
 }
