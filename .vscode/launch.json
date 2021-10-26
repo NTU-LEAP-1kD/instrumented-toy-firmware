@@ -29,6 +29,16 @@
             "projectEnvName": "SparkFun_RedBoard_Artemis_ATP",
             "toolchainBinDir": "C:/Users/vicgd/.platformio/packages/toolchain-gccarmnoneeabi/bin",
             "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "platformio-debug",
+            "request": "launch",
+            "name": "PIO Debug (without uploading)",
+            "executable": "c:/Git/School/instrumented-toy-firmware/.pio/build/SparkFun_RedBoard_Artemis_ATP/program.exe",
+            "projectEnvName": "SparkFun_RedBoard_Artemis_ATP",
+            "toolchainBinDir": "C:/Users/vicgd/.platformio/packages/toolchain-gccarmnoneeabi/bin",
+            "internalConsoleOptions": "openOnSessionStart",
+            "loadMode": "manual"
         }
     ]
 }
