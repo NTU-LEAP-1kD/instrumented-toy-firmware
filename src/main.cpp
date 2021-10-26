@@ -5,8 +5,11 @@
 
 void setup() {
   // put your setup code here, to run once:
+  initQwiic();
   initUSB();
   initBLE();
+
+
   initIMU();
   initTaskSyncRtc();
   pinMode(PIN_STAT_LED, OUTPUT);
