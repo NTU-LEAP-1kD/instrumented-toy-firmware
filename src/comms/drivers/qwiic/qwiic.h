@@ -1,4 +1,7 @@
 #pragma once 
+#include <Wire.h>
+
+extern TwoWire qwiic;
 
 void initQwiic();
 void qwiicPowerOn();
