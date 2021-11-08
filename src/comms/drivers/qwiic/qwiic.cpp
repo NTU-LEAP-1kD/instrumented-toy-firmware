@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <Wire.h>
 #include "config/config.h"
 #include "qwiic.h"
 

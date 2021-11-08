@@ -9,9 +9,9 @@ void setup() {
   initUSB();
   initBLE();
 
-
   initIMU();
   initTaskSyncRtc();
+  initPressureSensor();
   pinMode(PIN_STAT_LED, OUTPUT);
   Serial.println("Reading\tEMA");
 }
@@ -19,6 +19,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   current_ms = millis();
+  loopTaskReadPressureSensor();
   loopTaskLogImu();
   loopTaskPollBle();
   loopTaskReadCts();
