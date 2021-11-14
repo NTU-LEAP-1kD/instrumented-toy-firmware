@@ -5,6 +5,7 @@
 #include "utils/time/rtc/rtc.h"
 #include "utils/time/time.h"
 #include "utils/utils.h"
+#include "utils/filters/EMA.cpp"
 #include "rtcSync.h"
 
 int64_t timesync_rtc_offset;
@@ -20,7 +21,7 @@ void loopTaskSyncRtc(){
     static uint64_t sync_count; 
     if(prev_received_cts_timestamp_millis != received_cts_timestamp_millis){
         prev_received_cts_timestamp_millis = received_cts_timestamp_millis;
-        if(sync_count++ > 1){
+        if(sync_count++){
             setSyncedMillis();
         }
         else{
@@ -38,16 +39,12 @@ void setSyncedMillis(){
 }
 
 void updateTimesyncRtcOffset(int64_t new_offset){
-    static int64_t remainder;
     if(timesync_rtc_offset == 0){
         timesync_rtc_offset = new_offset; 
     } 
     else{ //EMA filter
-        timesync_rtc_offset *= timesync_update_filter_factor;
-        timesync_rtc_offset += new_offset;
-        timesync_rtc_offset += remainder;
-        remainder = timesync_rtc_offset % (timesync_update_filter_factor + 1);
-        timesync_rtc_offset /= timesync_update_filter_factor + 1; 
+        static EMA<timesync_update_filter_factor,int64_t, uint64_t> timeSyncFilter(new_offset);
+        timesync_rtc_offset = timeSyncFilter(new_offset); 
     }
 }
 
