@@ -2,7 +2,7 @@
 
 #include "config/config.h"
 #include "comms/drivers/BLE/BLE.h"
-#include "comms/timesync/rtcSync/rtcSync.h"
+#include "utils/time/rtcSync/rtcSync.h"
 #include "utils/time/rtc/rtc.h"
 #include "utils/time/time.h"
 #include "cts.h"
