@@ -1,5 +1,5 @@
 #pragma once 
-#include "comms/timesync/cts/cts.h"
+#include "utils/time/cts/cts.h"
 
 const uint8_t timesync_update_filter_factor = 10;
 

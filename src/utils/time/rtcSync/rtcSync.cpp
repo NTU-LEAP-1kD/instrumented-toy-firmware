@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <RTC.h>
 #include "config/config.h"
-#include "comms/timesync/cts/cts.h"
+#include "utils/time/cts/cts.h"
 #include "utils/time/rtc/rtc.h"
 #include "utils/time/time.h"
 #include "utils/utils.h"

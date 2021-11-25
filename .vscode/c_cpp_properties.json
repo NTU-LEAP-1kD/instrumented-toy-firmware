@@ -10,10 +10,10 @@
             "includePath": [
                 "c:/Git/School/instrumented-toy-firmware/include",
                 "c:/Git/School/instrumented-toy-firmware/src",
+                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/libraries/RTC/src",
                 "c:/Git/School/instrumented-toy-firmware/lib/pressure/src",
                 "c:/Git/School/instrumented-toy-firmware/lib/IMU/src",
                 "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/libraries/SPI/src",
-                "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/libraries/RTC/src",
                 "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/libraries/Wire/src",
                 "c:/Git/School/instrumented-toy-firmware/lib/BLE/src",
                 "c:/Git/School/instrumented-toy-firmware",
@@ -36,10 +36,10 @@
                 "path": [
                     "c:/Git/School/instrumented-toy-firmware/include",
                     "c:/Git/School/instrumented-toy-firmware/src",
+                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/libraries/RTC/src",
                     "c:/Git/School/instrumented-toy-firmware/lib/pressure/src",
                     "c:/Git/School/instrumented-toy-firmware/lib/IMU/src",
                     "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/libraries/SPI/src",
-                    "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/libraries/RTC/src",
                     "C:/Users/vicgd/.platformio/packages/framework-arduinoapollo3@2.1.0/libraries/Wire/src",
                     "c:/Git/School/instrumented-toy-firmware/lib/BLE/src",
                     "c:/Git/School/instrumented-toy-firmware",
