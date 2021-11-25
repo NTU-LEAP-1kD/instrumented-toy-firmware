@@ -1,5 +1,5 @@
 #include <RTC.h>
-#include "comms/timesync/cts/cts.h"
+#include "utils/time/cts/cts.h"
 #include "utils/time/time.h"
 #include "rtc.h"
 
