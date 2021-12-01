@@ -1,5 +1,29 @@
 #include "Arduino.h"
 #include "config/config.h"
+#include "sdcard.h"
+
+#if SD_FAT_TYPE == 1
+SdFat32 sd;
+File32 sensorDataFile; //File that all sensor data is written to
+File32 serialDataFile; //File that all incoming serial data is written to
+#elif SD_FAT_TYPE == 2
+SdExFat sd;
+ExFile sensorDataFile; //File that all sensor data is written to
+ExFile serialDataFile; //File that all incoming serial data is written to
+#elif SD_FAT_TYPE == 3
+SdFs sd;
+FsFile sensorDataFile; //File that all sensor data is written to
+FsFile serialDataFile; //File that all incoming serial data is written to
+#else // SD_FAT_TYPE == 0
+SdFat sd;
+File sensorDataFile; //File that all sensor data is written to
+File serialDataFile; //File that all incoming serial data is written to
+#endif  // SD_FAT_TYPE
+
+//#define PRINT_LAST_WRITE_TIME // Uncomment this line to enable the 'measure the time between writes' diagnostic
+
+char sensorDataFileName[30] = ""; //We keep a record of this file name so that we can re-open it upon wakeup from sleep
+char serialDataFileName[30] = ""; //We keep a record of this file name so that we can re-open it upon wakeup from sleep
 
 void beginSD()
 {
@@ -22,7 +46,7 @@ void beginSD()
     //Max current is 200mA average across 1s, peak 300mA
     for (int i = 0; i < 10; i++) //Wait
     {
-      checkBattery();
+      //checkBattery();
       delay(1);
     }
 
@@ -36,8 +60,8 @@ void beginSD()
       }
       if (sd.begin(SD_CONFIG) == false) // Try to begin the SD card using the correct chip select
       {
-        SerialPrintln(F("SD init failed (second attempt). Is card present? Formatted?"));
-        SerialPrintln(F("Please ensure the SD card is formatted correctly using https://www.sdcard.org/downloads/formatter/"));
+        Serial.println(F("SD init failed (second attempt). Is card present? Formatted?"));
+        Serial.println(F("Please ensure the SD card is formatted correctly using https://www.sdcard.org/downloads/formatter/"));
         digitalWrite(PIN_MICROSD_CHIP_SELECT, HIGH); //Be sure SD is deselected
         online.microSD = false;
         return;
@@ -47,7 +71,7 @@ void beginSD()
     //Change to root directory. All new file creation will be in root.
     if (sd.chdir() == false)
     {
-      SerialPrintln(F("SD change directory failed"));
+      Serial.println(F("SD change directory failed"));
       online.microSD = false;
       return;
     }
