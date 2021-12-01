@@ -2,23 +2,9 @@
 #include "config/config.h"
 #include "sdcard.h"
 
-#if SD_FAT_TYPE == 1
-SdFat32 sd;
-File32 sensorDataFile; //File that all sensor data is written to
-File32 serialDataFile; //File that all incoming serial data is written to
-#elif SD_FAT_TYPE == 2
-SdExFat sd;
-ExFile sensorDataFile; //File that all sensor data is written to
-ExFile serialDataFile; //File that all incoming serial data is written to
-#elif SD_FAT_TYPE == 3
 SdFs sd;
 FsFile sensorDataFile; //File that all sensor data is written to
 FsFile serialDataFile; //File that all incoming serial data is written to
-#else // SD_FAT_TYPE == 0
-SdFat sd;
-File sensorDataFile; //File that all sensor data is written to
-File serialDataFile; //File that all incoming serial data is written to
-#endif  // SD_FAT_TYPE
 
 //#define PRINT_LAST_WRITE_TIME // Uncomment this line to enable the 'measure the time between writes' diagnostic
 

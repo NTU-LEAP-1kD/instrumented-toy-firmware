@@ -10,6 +10,7 @@ void setup() {
   initUSB();
   initBLE();
   initSD();
+  initDataLogging();
 
   initIMU();
   initTaskSyncRtc();
