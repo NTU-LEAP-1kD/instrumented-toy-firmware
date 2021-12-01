@@ -70,3 +70,4 @@ char* findNextAvailableLog(int &newFileNumber, const char *fileLeader)
 
   return (newFileName);
 }
+

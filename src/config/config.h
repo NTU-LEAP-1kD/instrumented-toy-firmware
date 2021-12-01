@@ -17,7 +17,7 @@ struct struct_settings {
   bool enableRTC = true;
   bool enableIMU = true;
   bool enableSD = true;
-  bool enableTerminalOutput = true;
+  bool enableTerminalOutput = false;
   bool logDate = true;
   bool logTime = true;
   bool logData = true;

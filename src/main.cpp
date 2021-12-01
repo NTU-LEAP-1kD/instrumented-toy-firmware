@@ -23,8 +23,9 @@ void loop() {
   // put your main code here, to run repeatedly:
   current_ms = millis();
   //loopTaskReadPressureSensor();
-  loopTaskLogImu();
+  //loopTaskLogImu();
   loopTaskPollBle();
   loopTaskReadCts();
   loopTaskSyncRtc(); 
+  loopTaskLogData();
 }

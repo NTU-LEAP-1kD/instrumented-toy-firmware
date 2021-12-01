@@ -2,6 +2,7 @@
 #include "config/config.h"
 #include "logging/sdcard/sdcard.h"
 #include "logging/sdfile/sdfile.h"
+#include "logging/helpers/helpers.h"
 
 void initDataLogging();
 void printHelperText(bool terminalOnly);
@@ -23,60 +24,19 @@ void initDataLogging()
     //updateDataFileCreate(&sensorDataFile); // Update the file create time & date
     online.dataLogging = true;
     printHelperText(false);
-    sensorDataFile.sync();
   }
   else
     online.dataLogging = false;
 }
 
-//Headers for the CSV file
-void printHelperText(bool terminalOnly)
-{
-  char helperText[1000];
-  helperText[0] = '\0';
+void loopTaskLogData(){
+    static uint64_t prev_log_data_time;
+    if(millis() - prev_log_data_time > settings.usBetweenReadings / 1000ULL){
+        prev_log_data_time = millis(); 
 
-  if (settings.logRTC)
-  {
-    if (settings.logDate)
-      strcat(helperText, "rtcDate,");
-    if (settings.logTime)
-      strcat(helperText, "rtcTime,");
-    if (settings.logMicroseconds)
-      strcat(helperText, "micros,");
-  }
-  if (settings.logVIN)
-    strcat(helperText, "VIN,");
-
-  if (online.IMU)
-  {
-    if (settings.imuUseDMP == false)
-    {
-      if (settings.logIMUAccel)
-        strcat(helperText, "aX,aY,aZ,");
-      if (settings.logIMUGyro)
-        strcat(helperText, "gX,gY,gZ,");
-      if (settings.logIMUMag)
-        strcat(helperText, "mX,mY,mZ,");
-      if (settings.logIMUTemp)
-        strcat(helperText, "imu_degC,");
+        char log_buf[512];
+        log_buf[0] = '\0';
+        logTime(log_buf);
+        printBufToFile(log_buf);
     }
-    else
-    {
-      if (settings.imuLogDMPQuat6)
-        strcat(helperText, "Q6_1,Q6_2,Q6_3,");
-      if (settings.imuLogDMPQuat9)
-        strcat(helperText, "Q9_1,Q9_2,Q9_3,HeadAcc,");
-      if (settings.imuLogDMPAccel)
-        strcat(helperText, "RawAX,RawAY,RawAZ,");
-      if (settings.imuLogDMPGyro)
-        strcat(helperText, "RawGX,RawGY,RawGZ,");
-      if (settings.imuLogDMPCpass)
-        strcat(helperText, "RawMX,RawMY,RawMZ,");
-    }
-  }
-  strcat(helperText, "\r\n");
-
-  Serial.print(helperText);
-  if ((terminalOnly == false) && (settings.logData == true) && (online.microSD) && (settings.enableSD && online.microSD))
-    sensorDataFile.print(helperText);
 }
