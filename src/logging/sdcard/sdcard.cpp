@@ -25,8 +25,9 @@ File serialDataFile; //File that all incoming serial data is written to
 char sensorDataFileName[30] = ""; //We keep a record of this file name so that we can re-open it upon wakeup from sleep
 char serialDataFileName[30] = ""; //We keep a record of this file name so that we can re-open it upon wakeup from sleep
 
-void beginSD()
+void initSD()
 {
+  SPI.begin();
   pinMode(PIN_MICROSD_POWER, OUTPUT);
   pin_config(PinName(PIN_MICROSD_POWER), g_AM_HAL_GPIO_OUTPUT); // Make sure the pin does actually get re-configured
   pinMode(PIN_MICROSD_CHIP_SELECT, OUTPUT);
@@ -52,10 +53,10 @@ void beginSD()
 
     if (sd.begin(SD_CONFIG) == false) // Try to begin the SD card using the correct chip select
     {
-      printDebug(F("SD init failed (first attempt). Trying again...\r\n"));
+      Serial.println(F("SD init failed (first attempt). Trying again...\r\n"));
       for (int i = 0; i < 250; i++) //Give SD more time to power up, then try again
       {
-        checkBattery();
+        //checkBattery();
         delay(1);
       }
       if (sd.begin(SD_CONFIG) == false) // Try to begin the SD card using the correct chip select

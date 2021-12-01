@@ -2,12 +2,14 @@
 #include "config/config.h"
 #include "comms/tasks.h"
 #include "sensors/tasks.h"
+#include "logging/tasks.h"
 
 void setup() {
   // put your setup code here, to run once:
   initQwiic();
   initUSB();
   initBLE();
+  initSD();
 
   initIMU();
   initTaskSyncRtc();

@@ -10,6 +10,6 @@
 
 const int sdPowerDownDelay = 100; //Delay for this many ms before turning off the SD card power
 
-void beginSD();
+void initSD();
 void microSDPowerOn();
 void microSDPowerOff();
