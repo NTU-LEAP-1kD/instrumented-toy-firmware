@@ -79,7 +79,7 @@ struct struct_settings {
   int slowLoggingStartMOD = 1260; // Start slow logging at this many Minutes Of Day. Default to 21:00
   int slowLoggingStopMOD = 420; // Stop slow logging at this many Minutes Of Day. Default to 07:00
   bool resetOnZeroDeviceCount = false; // A work-around for I2C bus crashes. Enable this via the debug menu.
-  bool imuUseDMP = true; // If true, enable the DMP
+  bool imuUseDMP = false; // If true, enable the DMP
   bool imuLogDMPQuat6 = true; // If true, log INV_ICM20948_SENSOR_GAME_ROTATION_VECTOR (Quat6)
   bool imuLogDMPQuat9 = true; // If true, log INV_ICM20948_SENSOR_ROTATION_VECTOR (Quat9 + Heading Accuracy)
   bool imuLogDMPAccel = false; // If true, log INV_ICM20948_SENSOR_RAW_ACCELEROMETER
