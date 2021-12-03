@@ -2,7 +2,7 @@
 
 #include <ArduinoBLE.h>
 
-const uint16_t CTS_YEAR_OFFSET = 1794;
+const uint16_t CTS_YEAR_OFFSET = 1744;
 
 const uint32_t MAX_CTS_RTT = 100;
 const uint32_t CTS_READ_INTERVAL = 200; 
