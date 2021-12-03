@@ -8,7 +8,7 @@
 //
 //*****************************************************************************
 
-static uint64_t divu64_10(uint64_t ui64Val)
+uint64_t divu64_10(uint64_t ui64Val)
 {
     uint64_t q64, r64;
     uint32_t q32, r32, ui32Val;
@@ -51,7 +51,7 @@ static uint64_t divu64_10(uint64_t ui64Val)
 // written).
 //
 //*****************************************************************************
-static int uint64_to_str(uint64_t ui64Val, char *pcBuf)
+int uint64_to_str(uint64_t ui64Val, char *pcBuf)
 {
     char tbuf[25];
     int ix = 0, iNumDig = 0;
@@ -126,7 +126,7 @@ typedef union
     float F;
 } ola_i32fl_t;
 
-static int olaftoa(float fValue, char *pcBuf, int iPrecision, int bufSize)
+int olaftoa(float fValue, char *pcBuf, int iPrecision, int bufSize)
 {
     ola_i32fl_t unFloatValue;
     int iExp2, iBufSize;

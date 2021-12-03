@@ -10,13 +10,11 @@ void setup() {
   initUSB();
   initBLE();
   initSD();
-  initDataLogging();
 
   initIMU();
   initTaskSyncRtc();
   //initPressureSensor();
-  pinMode(PIN_STAT_LED, OUTPUT);
-  Serial.println("Reading\tEMA");
+  initDataLogging();
 }
 
 void loop() {

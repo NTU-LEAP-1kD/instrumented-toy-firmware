@@ -37,6 +37,7 @@ void loopTaskLogData(){
         char log_buf[512];
         log_buf[0] = '\0';
         logTime(log_buf);
-        printBufToFile(log_buf);
+        logIMU(log_buf);
+        printBufToFile(log_buf, sensorDataFile);
     }
 }
