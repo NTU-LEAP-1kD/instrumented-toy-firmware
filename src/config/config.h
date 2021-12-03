@@ -29,7 +29,7 @@ struct struct_settings {
   bool logRTC = true;
   bool logHertz = true;
   bool correctForDST = false;
-  bool americanDateStyle = true;
+  bool americanDateStyle = false;
   bool hour24Style = true;
   int  serialTerminalBaudRate = 115200;
   int  serialLogBaudRate = 9600;
