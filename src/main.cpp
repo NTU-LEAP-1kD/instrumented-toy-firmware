@@ -2,26 +2,28 @@
 #include "config/config.h"
 #include "comms/tasks.h"
 #include "sensors/tasks.h"
+#include "logging/tasks.h"
 
 void setup() {
   // put your setup code here, to run once:
   initQwiic();
   initUSB();
   initBLE();
+  initSD();
 
   initIMU();
   initTaskSyncRtc();
   //initPressureSensor();
-  pinMode(PIN_STAT_LED, OUTPUT);
-  Serial.println("Reading\tEMA");
+  initDataLogging();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   current_ms = millis();
   //loopTaskReadPressureSensor();
-  loopTaskLogImu();
+  //loopTaskLogImu();
   loopTaskPollBle();
   loopTaskReadCts();
   loopTaskSyncRtc(); 
+  loopTaskLogData();
 }
