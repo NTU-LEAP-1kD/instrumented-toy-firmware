@@ -3,9 +3,11 @@
 #include "pressure.h"
 
 void initPressureSensor(){
-    if(!mpr.begin(0x18, qwiic)){
-        Serial.println("Cannot connect to MicroPressure sensor.");
-        while(1);
+    if(mpr.begin(0x18, qwiic)){
+        online.barometer = true; 
+    }
+    else{
+        Serial.println(F("Cannot connect to MicroPressure sensor."));
     }
 }
 

@@ -29,6 +29,7 @@ struct struct_settings {
   bool logIMUTemp = true;
   bool logRTC = true;
   bool logHertz = true;
+  bool logBarometer = true;
   bool correctForDST = false;
   bool americanDateStyle = false;
   bool hour24Style = true;
@@ -98,6 +99,7 @@ struct struct_online {
   bool dataLogging = false;
   bool serialLogging = false;
   bool IMU = false;
+  bool barometer = false;
   bool serialOutput = false;
 };
 
