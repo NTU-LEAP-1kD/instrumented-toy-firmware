@@ -1,13 +1,15 @@
 #include "config/config.h"
 #include "comms/drivers/qwiic/qwiic.h"
-#include <SparkFun_MicroPressure.h>
+#include "pressure.h"
 
 SparkFun_MicroPressure mpr; 
 
 void initPressureSensor(){
-    if(!mpr.begin(0x18, qwiic)){
-        Serial.println("Cannot connect to MicroPressure sensor.");
-        while(1);
+    if(mpr.begin(BAROMETER_I2C_ADD, qwiic)){
+        online.barometer = true; 
+    }
+    else{
+        Serial.println(F("Cannot connect to MicroPressure sensor."));
     }
 }
 

@@ -1,6 +1,7 @@
 #include "Arduino.h"
 #include "config/config.h"
 #include "sensors/IMU/imu.h"
+#include "sensors/pressure/pressure.h"
 #include "logging/sdcard/sdcard.h"
 #include "logging/sdfile/sdfile.h"
 #include "utils/time/rtc/rtc.h"
@@ -51,6 +52,10 @@ void printHelperText(bool terminalOnly)
         strcat(helperText, "RawMX,RawMY,RawMZ,");
     }
   }
+  if (online.barometer && settings.logBarometer){
+    strcat(helperText, "atm,");
+  }
+
   strcat(helperText, "\r\n");
 
   Serial.print(helperText);
@@ -161,6 +166,15 @@ void logIMU(char* buf){
         strcat(buf, tempData);
       }
     }
+  }
+}
+
+void logBarometer(char* buf){
+  if(online.barometer && settings.logBarometer){
+    char atm_buf[15];
+    float atm = mpr.readPressure(ATM) - 1.0f;
+    olaftoa(atm, atm_buf, 10, sizeof(atm_buf)/sizeof(char)); 
+    strcat(buf,atm_buf);
   }
 }
 

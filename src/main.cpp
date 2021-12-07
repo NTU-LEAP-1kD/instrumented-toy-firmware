@@ -13,7 +13,7 @@ void setup() {
 
   initIMU();
   initTaskSyncRtc();
-  //initPressureSensor();
+  initPressureSensor();
   initDataLogging();
 }
 
