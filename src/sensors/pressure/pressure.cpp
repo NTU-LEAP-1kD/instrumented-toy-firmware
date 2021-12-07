@@ -1,6 +1,8 @@
 #include "config/config.h"
 #include "comms/drivers/qwiic/qwiic.h"
-#include "pressure.h"
+#include <SparkFun_MicroPressure.h>
+
+SparkFun_MicroPressure mpr; 
 
 void initPressureSensor(){
     if(!mpr.begin(0x18, qwiic)){

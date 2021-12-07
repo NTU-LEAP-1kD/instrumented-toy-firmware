@@ -1,7 +1,6 @@
 #include "Arduino.h"
 #include "config/config.h"
 #include "sensors/IMU/imu.h"
-#include "sensors/pressure/pressure.h"
 #include "logging/sdcard/sdcard.h"
 #include "logging/sdfile/sdfile.h"
 #include "utils/time/rtc/rtc.h"
