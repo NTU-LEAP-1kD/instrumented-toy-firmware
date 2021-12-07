@@ -2,8 +2,10 @@
 #include "comms/drivers/qwiic/qwiic.h"
 #include "pressure.h"
 
+SparkFun_MicroPressure mpr; 
+
 void initPressureSensor(){
-    if(mpr.begin(0x18, qwiic)){
+    if(mpr.begin(BAROMETER_I2C_ADD, qwiic)){
         online.barometer = true; 
     }
     else{
