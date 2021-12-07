@@ -1,5 +1,6 @@
 #pragma once
 #include "pins.h"
+#include "utils/utils.h"
 
 //This is all the settings that can be set on OpenLog. It's recorded to NVM and the config file.
 struct struct_settings {

@@ -33,9 +33,7 @@ void loopTaskSyncRtc(){
 void setSyncedMillis(){
     int64_t new_offset;
     new_offset = calcAdjustedCtsMillis() - rtcMillis();
-    csvPrint(new_offset);
     updateTimesyncRtcOffset(new_offset);
-    Serial.println(timesync_rtc_offset);
 }
 
 void updateTimesyncRtcOffset(int64_t new_offset){
