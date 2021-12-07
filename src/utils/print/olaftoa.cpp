@@ -1,4 +1,7 @@
-#include "utils.h"
+#include "Arduino.h"
+
+uint64_t divu64_10(uint64_t ui64Val);
+int uint64_to_str(uint64_t ui64Val, char *pcBuf);
 
 //*****************************************************************************
 //
