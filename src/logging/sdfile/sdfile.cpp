@@ -33,7 +33,7 @@ char* findNextAvailableLog(int &newFileNumber, const char *fileLeader)
       sprintf(newFileNumberStr, "0%d", newFileNumber);
     else
       sprintf(newFileNumberStr, "%d", newFileNumber);
-    sprintf(newFileName, "%s%s.TXT", fileLeader, newFileNumberStr); //Splice the new file number into this file name. Max no. is 99999.
+    sprintf(newFileName, "%s%s.csv", fileLeader, newFileNumberStr); //Splice the new file number into this file name. Max no. is 99999.
 
     if (sd.exists(newFileName) == false) break; //File name not found so we will use it.
 
