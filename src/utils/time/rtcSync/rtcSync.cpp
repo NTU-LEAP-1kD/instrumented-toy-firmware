@@ -14,6 +14,10 @@ void initTaskSyncRtc(){
     if(rtcMillis() < millis()){
         setRtcToCompilerTime();
     }
+    char time_string_buf[37];
+    getTimeString(time_string_buf);
+    Serial.print("Current time:\t");
+    Serial.println(time_string_buf);
 }
 
 void loopTaskSyncRtc(){ 
