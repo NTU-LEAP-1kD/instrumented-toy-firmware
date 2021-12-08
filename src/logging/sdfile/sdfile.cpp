@@ -2,6 +2,9 @@
 #include "config/config.h"
 #include "logging/sdcard/sdcard.h"
 
+char sensorDataFileName[30] = ""; //We keep a record of this file name so that we can re-open it upon wakeup from sleep
+char debugDataFileName[30] = ""; //We keep a record of this file name so that we can re-open it upon wakeup from sleep
+
 //Returns next available log file name
 //Checks the spots in EEPROM for the next available LOG# file name
 //Updates EEPROM and then appends to the new log file.

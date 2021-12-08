@@ -22,6 +22,7 @@ struct struct_settings {
   bool logDate = true;
   bool logTime = true;
   bool logData = true;
+  bool logDebug = true;
   bool logSerial = true;
   bool logIMUAccel = true;
   bool logIMUGyro = true;

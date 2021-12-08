@@ -4,12 +4,10 @@
 
 SdFs sd;
 FsFile sensorDataFile; //File that all sensor data is written to
-FsFile serialDataFile; //File that all incoming serial data is written to
+FsFile debugDataFile; //File that all debug data is written to
 
 //#define PRINT_LAST_WRITE_TIME // Uncomment this line to enable the 'measure the time between writes' diagnostic
 
-char sensorDataFileName[30] = ""; //We keep a record of this file name so that we can re-open it upon wakeup from sleep
-char serialDataFileName[30] = ""; //We keep a record of this file name so that we can re-open it upon wakeup from sleep
 
 void initSD()
 {
