@@ -6,10 +6,12 @@
 
 void setup() {
   // put your setup code here, to run once:
+  initSD();
+  initDebugging();
+
   initQwiic();
   initUSB();
   initBLE();
-  initSD();
 
   initIMU();
   initTaskSyncRtc();

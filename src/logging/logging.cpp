@@ -29,22 +29,6 @@ void initDataLogging()
     online.dataLogging = false;
 }
 
-void initDebugging(){
-  if (online.microSD == true && settings.logDebug == true)
-  {
-    //If we don't have a file yet, create one. Otherwise, re-open the last used file
-    if (strlen(debugDataFileName) == 0)
-      strcpy(debugDataFileName, findNextAvailableLog(settings.nextDataLogNumber, "debugLog"));
-
-    if (debugDataFile.open(debugDataFileName, O_CREAT | O_APPEND | O_WRITE) == false)
-    {
-      Serial.println(F("Failed to create debug data file"));
-      return;
-    }
-    //updateDataFileCreate(&debugDataFile); // Update the file create time & date
-  }
-}
-
 void loopTaskLogData(){
     static uint64_t prev_log_data_time;
     if(millis() - prev_log_data_time > settings.usBetweenReadings / 1000ULL){
