@@ -7,9 +7,10 @@ SparkFun_MicroPressure mpr;
 void initPressureSensor(){
     if(mpr.begin(BAROMETER_I2C_ADD, qwiic)){
         online.barometer = true; 
+        printDebugMessage("initPressureSensor success", D_DEBUG);
     }
     else{
-        Serial.println(F("Cannot connect to MicroPressure sensor."));
+        printDebugMessage("initPressureSensor fail", D_FATAL);
     }
 }
 
