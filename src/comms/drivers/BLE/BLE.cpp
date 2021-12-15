@@ -36,7 +36,7 @@ void initBLE(){
   // start advertising
   BLE.advertise();
 
-  //Serial.println(("Bluetooth device active, waiting for connections..."));
+  printDebugMessage("initBLE Success", D_DEBUG);
 }
 
 void loopTaskPollBle(){
