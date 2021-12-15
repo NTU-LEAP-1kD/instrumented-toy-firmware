@@ -196,11 +196,13 @@ void initIMU()
   if (success)
   {
     online.IMU = true;
+    printDebugMessage("initIMU success", D_DEBUG); 
     delay(50); // Give the IMU time to get its first measurement ready
   }
   else
   {
     //Power down IMU
+    printDebugMessage("initIMU fail", D_FATAL); 
     imuPowerOff();
     online.IMU = false;
   }
