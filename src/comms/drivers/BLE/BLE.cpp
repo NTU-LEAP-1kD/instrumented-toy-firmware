@@ -11,9 +11,7 @@ const int ledPin = PIN_STAT_LED; // pin to use for the LED
 
 void initBLE(){
   if (!BLE.begin()) {
-    Serial.println("starting BLE failed!");
-
-    while (1);
+    printDebugMessage("BLE Init Failed", D_FATAL);
   }
  // set the local name peripheral advertises
   BLE.setLocalName(BLE_PERIPHERAL_NAME);
@@ -46,11 +44,7 @@ void loopTaskPollBle(){
 }
 
 void blePeripheralConnectHandler(BLEDevice central) {
-  // central connected event handler
-  /*
-  Serial.print("Connected event, central: ");
-  Serial.println(central.address());
-  */
+  printDebugMessage("BLE Connected", D_DEBUG);
 
   BLE.setConnectionInterval(CONNECTION_INTERVAL_MIN,CONNECTION_INTERVAL_MAX);
 
@@ -61,15 +55,10 @@ void blePeripheralConnectHandler(BLEDevice central) {
 
 void blePeripheralDisconnectHandler(BLEDevice central) {
   // central disconnected event handler
-  
-  Serial.print("Disconnected event, central: ");
-  Serial.println(central.address());
+  printDebugMessage("BLE Disconnected", D_DEBUG);
 }
 
 void switchCharacteristicWritten(BLEDevice central, BLECharacteristic characteristic) {
   // central wrote new value to characteristic, update LED
-  Serial.print("Characteristic event, written: ");
-  Serial.print(switchCharacteristic.value());
-  
   settings.outputSerial = switchCharacteristic.value();
 }
