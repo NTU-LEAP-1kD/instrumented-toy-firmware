@@ -5,7 +5,7 @@
 const uint16_t CTS_YEAR_OFFSET = 1744;
 
 const uint32_t MAX_CTS_RTT = 100;
-const uint32_t CTS_READ_INTERVAL = 200; 
+const uint32_t CTS_READ_INTERVAL = 30000; 
 
 struct current_time_t{
   uint16_t year; //since 1794
