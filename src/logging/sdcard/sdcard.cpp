@@ -49,6 +49,7 @@ void initSD()
         Serial.println(F("Please ensure the SD card is formatted correctly using https://www.sdcard.org/downloads/formatter/"));
         digitalWrite(PIN_MICROSD_CHIP_SELECT, HIGH); //Be sure SD is deselected
         online.microSD = false;
+        printDebugMessage("initSD fail",D_FATAL); 
         return;
       }
     }
@@ -58,15 +59,18 @@ void initSD()
     {
       Serial.println(F("SD change directory failed"));
       online.microSD = false;
+      printDebugMessage("initSD fail",D_FATAL);
       return;
     }
 
     online.microSD = true;
+    printDebugMessage("initSD success",D_DEBUG);
   }
   else
   {
     microSDPowerOff();
     online.microSD = false;
+    printDebugMessage("initSD fail",D_FATAL);
   }
 }
 

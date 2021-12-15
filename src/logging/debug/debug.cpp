@@ -5,10 +5,6 @@
 #include "logging/helpers/helpers.h"
 #include "debug.h"
 
-void initDebugging();
-void printDebugMessage(const char* debug_msg, debug_code_t debug_code);
-void logDebugCode(char* buf, debug_code_t debug_code);
-
 void initDebugging(){
   if (online.microSD == true && settings.logDebug == true)
   {
