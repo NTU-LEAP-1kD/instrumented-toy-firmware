@@ -5,7 +5,7 @@
 #include "logging/tasks.h"
 
 void setup() {
-  // put your setup code here, to run once:
+  digitalWrite(PIN_STAT_LED, HIGH);
   initSD();
   initDebugging();
 
