@@ -8,15 +8,15 @@ void loopTaskReadBattery(){
     static uint64_t prev_millis = 0;
     if(current_ms - prev_millis > BATTERY_READ_INTERVAL_MS){
         prev_millis = current_ms; 
-        debugLogMv(filterMv(readBatteryMv()));
+        debugLogBattery(filterMv(readBatteryMv()));
     }
 }
 
-void debugLogMv(uint16_t mv){
-    char buf[20];
+void debugLogBattery(uint16_t mv){
+    char buf[30];
     buf[0] = '\0';
 
-    sprintf(buf,"Batt: %dmV",mv);
+    sprintf(buf,"Batt %d\%/%dmV",calculateBatteryCapacity(mv),mv);
     printDebugMessage(buf, D_DEBUG);
 }
 
@@ -30,4 +30,19 @@ uint16_t readBatteryMv(){
     int div3 = analogRead(PIN_VIN_MONITOR); //Read VIN across a 1/3 resistor divider
     uint16_t mv = float(div3) * DIV3_TO_MV; 
     return mv;
+}
+
+uint8_t calculateBatteryCapacity(uint16_t voltage){
+    for(uint8_t i = 1; i < LIPO_DISCHARGE_CURVE_RESOLUTION; i++){
+        if (voltage > LIPO_DISCHARGE_CURVE[i]){
+            //Take a linear interpolation of points [i-1] and [i]
+            const uint8_t scale = BATTERY_CAPACITY_MAX_VALUE/
+                                  LIPO_DISCHARGE_CURVE_RESOLUTION;
+            uint8_t offset = (scale * (voltage - LIPO_DISCHARGE_CURVE[i])) / 
+                            (LIPO_DISCHARGE_CURVE[i-1] - LIPO_DISCHARGE_CURVE[i]);
+            uint8_t capacity = BATTERY_CAPACITY_MAX_VALUE - (i * scale) + offset;
+            return min(BATTERY_CAPACITY_MAX_VALUE, capacity);
+        } 
+    }
+    return 0;
 }
