@@ -28,6 +28,7 @@ void printDebugMessage(const char* debug_msg, debug_code_t debug_code){
   logTime(buf);
   logDebugCode(buf, debug_code);
   strcat(buf, debug_msg);
+  if(settings.printDebugMessages) Serial.println(buf);
   printBufToFile(buf, debugDataFile);
 }
 
