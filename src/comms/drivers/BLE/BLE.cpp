@@ -7,8 +7,6 @@ BLEService serialLogService("19B10000-E8F2-537E-4F6C-D104768A1214"); // create s
 // create switch characteristic and allow remote device to read and write
 BLEByteCharacteristic switchCharacteristic("19B10001-E8F2-537E-4F6C-D104768A1214", BLERead | BLEWrite);
 
-const int ledPin = PIN_STAT_LED; // pin to use for the LED
-
 void initBLE(){
   if (!BLE.begin()) {
     printDebugMessage("BLE Init Failed", D_FATAL);

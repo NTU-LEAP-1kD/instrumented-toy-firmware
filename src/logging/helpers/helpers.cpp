@@ -185,7 +185,6 @@ void printBufToFile(char* buf, FsFile &file){
     }
     if (settings.enableSD && online.microSD)
     {
-        digitalWrite(PIN_STAT_LED, HIGH);
         uint32_t recordLength = file.write(buf, strlen(buf));
         if (recordLength != strlen(buf)) //Record the buffer to the card
         {

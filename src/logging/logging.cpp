@@ -23,6 +23,7 @@ void initDataLogging()
     }
     //updateDataFileCreate(&sensorDataFile); // Update the file create time & date
     online.dataLogging = true;
+    digitalWrite(PIN_STAT_LED, LOW);
     printHelperText(false);
   }
   else

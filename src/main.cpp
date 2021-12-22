@@ -5,7 +5,7 @@
 #include "logging/tasks.h"
 
 void setup() {
-  // put your setup code here, to run once:
+  digitalWrite(PIN_STAT_LED, HIGH);
   initUSB();
   initSD();
   initDebugging();
@@ -20,7 +20,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   current_ms = millis();
   //loopTaskReadPressureSensor();
   //loopTaskLogImu();
