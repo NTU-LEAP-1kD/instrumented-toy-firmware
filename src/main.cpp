@@ -6,11 +6,11 @@
 
 void setup() {
   digitalWrite(PIN_STAT_LED, HIGH);
+  initUSB();
   initSD();
   initDebugging();
 
   initQwiic();
-  initUSB();
   initBLE();
 
   initIMU();
@@ -20,7 +20,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   current_ms = millis();
   //loopTaskReadPressureSensor();
   //loopTaskLogImu();

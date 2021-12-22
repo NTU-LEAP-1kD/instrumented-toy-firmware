@@ -43,7 +43,7 @@ struct struct_settings {
   bool logA32 = false;
   bool logAnalogVoltages = true;
   int  localUTCOffset = 0; //Default to UTC because we should
-  bool printDebugMessages = false;
+  bool printDebugMessages = true; //Print debug messages to USB Serial (on top of logging it to SD card)
 #if(HARDWARE_VERSION_MAJOR == 0)
   bool powerDownQwiicBusBetweenReads = false; // For the SparkX (black) board: default to leaving the Qwiic power enabled during sleep and powerDown to prevent a brown-out.
 #else
