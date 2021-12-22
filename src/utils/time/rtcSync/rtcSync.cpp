@@ -16,8 +16,7 @@ void initTaskSyncRtc(){
     }
     char time_string_buf[37];
     getTimeString(time_string_buf);
-    Serial.print("Current time:\t");
-    Serial.println(time_string_buf);
+    printDebugMessage("initTaskSyncRtc success", D_DEBUG);
 }
 
 void loopTaskSyncRtc(){ 
