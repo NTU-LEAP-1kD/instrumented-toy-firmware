@@ -6,7 +6,8 @@
 #include "power/tasks.h"
 
 void setup() {
-  digitalWrite(PIN_STAT_LED, HIGH);
+  initPins();
+  
   initUSB();
   initSD();
   initDebugging();
