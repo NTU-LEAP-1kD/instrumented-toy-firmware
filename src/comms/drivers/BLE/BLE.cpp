@@ -42,7 +42,7 @@ void loopTaskPollBle(){
 }
 
 void blePeripheralConnectHandler(BLEDevice central) {
-  printDebugMessage("BLE Connected", D_DEBUG);
+  printDebugMessage("BLE Connected", D_INFO);
 
   BLE.setConnectionInterval(CONNECTION_INTERVAL_MIN,CONNECTION_INTERVAL_MAX);
 
@@ -53,7 +53,7 @@ void blePeripheralConnectHandler(BLEDevice central) {
 
 void blePeripheralDisconnectHandler(BLEDevice central) {
   // central disconnected event handler
-  printDebugMessage("BLE Disconnected", D_DEBUG);
+  printDebugMessage("BLE Disconnected", D_INFO);
 }
 
 void switchCharacteristicWritten(BLEDevice central, BLECharacteristic characteristic) {
