@@ -1,9 +1,10 @@
 #pragma once
 
 const uint64_t BATTERY_READ_INTERVAL_MS = 5000; 
-const uint8_t BATTERY_FILTER_FACTOR = 3;
+const uint8_t BATTERY_FILTER_FACTOR = 6;
 
-//Convert 1/3 VIN to VIN (14-bit resolution) and Correct for divider impedance (determined experimentally)
+//Convert 1/3 VIN to VIN (14-bit resolution) and
+// Correct for divider impedance (determined experimentally)
 const float DIV3_TO_MV = settings.vinCorrectionFactor * 1000.0 * 3.0 * 2.0 / 16384.0; 
 
 //From https://blog.ampow.com/lipo-voltage-chart/
@@ -21,6 +22,7 @@ const uint8_t BATTERY_CAPACITY_MAX_VALUE = 100;
 
 void loopTaskReadBattery();
 void debugLogBattery(uint16_t mv);
+uint16_t smartFilterMv(uint16_t mv);
 uint16_t filterMv(uint16_t mv);
 uint16_t readBatteryMv();
 uint8_t calculateBatteryCapacity(uint16_t voltage);

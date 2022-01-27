@@ -8,7 +8,7 @@ void loopTaskReadBattery(){
     static uint64_t prev_millis = 0;
     if(current_ms - prev_millis > BATTERY_READ_INTERVAL_MS){
         prev_millis = current_ms; 
-        debugLogBattery(filterMv(readBatteryMv()));
+        debugLogBattery(smartFilterMv(readBatteryMv()));
     }
 }
 
@@ -18,6 +18,16 @@ void debugLogBattery(uint16_t mv){
 
     sprintf(buf,"Batt %d\%/%dmV",calculateBatteryCapacity(mv),mv);
     printDebugMessage(buf, D_DEBUG);
+}
+
+// If the mv reading is outside of LIPO_DISCHARGE_CURVE, don't pass it into the filter
+uint16_t smartFilterMv(uint16_t mv){
+    bool isValidLipoReading = 
+        (mv < LIPO_DISCHARGE_CURVE[0]) &&
+        (mv > LIPO_DISCHARGE_CURVE[LIPO_DISCHARGE_CURVE_RESOLUTION]);
+
+    if(isValidLipoReading) return filterMv(mv);
+    else return mv; 
 }
 
 uint16_t filterMv(uint16_t mv){
@@ -33,7 +43,7 @@ uint16_t readBatteryMv(){
 }
 
 uint8_t calculateBatteryCapacity(uint16_t voltage){
-    for(uint8_t i = 1; i < LIPO_DISCHARGE_CURVE_RESOLUTION; i++){
+    for(uint8_t i = 1; i <= LIPO_DISCHARGE_CURVE_RESOLUTION; i++){
         if (voltage > LIPO_DISCHARGE_CURVE[i]){
             //Take a linear interpolation of points [i-1] and [i]
             const uint8_t scale = BATTERY_CAPACITY_MAX_VALUE/
