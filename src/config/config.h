@@ -105,9 +105,14 @@ struct struct_online {
 };
 
 struct struct_current {
+  struct battery_state {
+    uint8_t percentage;
+    uint16_t mv;
+    bool is_charging;
+  };
+
   uint64_t ms;
-  uint8_t battery_percentage;
-  bool is_charging;
+  battery_state battery;
 };
 
 extern struct_settings settings;

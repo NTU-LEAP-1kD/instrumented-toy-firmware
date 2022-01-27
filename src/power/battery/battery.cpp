@@ -8,15 +8,31 @@ void loopTaskReadBattery(){
     static uint64_t prev_millis = 0;
     if(current.ms - prev_millis > BATTERY_READ_INTERVAL_MS){
         prev_millis = current.ms; 
-        debugLogBattery(smartFilterMv(readBatteryMv()));
+        updateBatteryStatus();
+        debugLogBattery();
     }
 }
 
-void debugLogBattery(uint16_t mv){
+void updateBatteryStatus(){
+    uint16_t mv = smartFilterMv(readBatteryMv()); 
+    current.battery.is_charging = mv > LIPO_DISCHARGE_CURVE[0];
+    if(not current.battery.is_charging){
+        current.battery.mv = mv;
+        current.battery.percentage = calculateBatteryCapacity(mv);
+    }
+}
+
+void debugLogBattery(){
     char buf[30];
     buf[0] = '\0';
 
-    sprintf(buf,"Batt %d\%/%dmV",calculateBatteryCapacity(mv),mv);
+    if(current.battery.is_charging){
+        sprintf(buf,"Batt charging");
+    }
+    else{
+        sprintf(buf,"Batt %d\%/%dmV", current.battery.percentage, current.battery.mv);
+    }
+    
     printDebugMessage(buf, D_DEBUG);
 }
 

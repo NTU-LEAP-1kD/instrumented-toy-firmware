@@ -21,7 +21,8 @@ const uint8_t LIPO_DISCHARGE_CURVE_RESOLUTION = sizeof(LIPO_DISCHARGE_CURVE) /
 const uint8_t BATTERY_CAPACITY_MAX_VALUE = 100;
 
 void loopTaskReadBattery();
-void debugLogBattery(uint16_t mv);
+void updateBatteryStatus();
+void debugLogBattery();
 uint16_t smartFilterMv(uint16_t mv);
 uint16_t filterMv(uint16_t mv);
 uint16_t readBatteryMv();
