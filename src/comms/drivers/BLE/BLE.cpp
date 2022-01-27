@@ -2,10 +2,13 @@
 #include "config/config.h"
 #include "BLE.h"
 
+//Custom serial logging service
 BLEService serialLogService("19B10000-E8F2-537E-4F6C-D104768A1214"); // create service
-
-// create switch characteristic and allow remote device to read and write
 BLEByteCharacteristic switchCharacteristic("19B10001-E8F2-537E-4F6C-D104768A1214", BLERead | BLEWrite);
+
+//Battery Service follows GATT docs, see https://developer.apple.com/forums/thread/77866
+BLEService batteryService("180F");
+BLEByteCharacteristic battPercentageCharacteristic("2A19", BLERead);
 
 void initBLE(){
   if (!BLE.begin()) {
@@ -13,14 +16,18 @@ void initBLE(){
   }
  // set the local name peripheral advertises
   BLE.setLocalName(BLE_PERIPHERAL_NAME);
+  
   // set the UUID for the service this peripheral advertises
   BLE.setAdvertisedService(serialLogService);
+  BLE.setAdvertisedService(batteryService);
 
-  // add the characteristic to the service
+  // add the characteristics to services
   serialLogService.addCharacteristic(switchCharacteristic);
+  batteryService.addCharacteristic(battPercentageCharacteristic);
 
-  // add service
+  // add services
   BLE.addService(serialLogService);
+  BLE.addService(batteryService);
 
   // assign event handlers for connected, disconnected to peripheral
   BLE.setEventHandler(BLEConnected, blePeripheralConnectHandler);
@@ -28,8 +35,10 @@ void initBLE(){
 
   // assign event handlers for characteristic
   switchCharacteristic.setEventHandler(BLEWritten, switchCharacteristicWritten);
-  // set an initial value for the characteristic
+
+  // set an initial value for the characteristics
   switchCharacteristic.setValue(0);
+  battPercentageCharacteristic.setValue(current.battery.percentage);
 
   // start advertising
   BLE.advertise();
@@ -39,10 +48,11 @@ void initBLE(){
 
 void loopTaskPollBle(){
   BLE.poll();
+  battPercentageCharacteristic.setValue(current.battery.percentage);
 }
 
 void blePeripheralConnectHandler(BLEDevice central) {
-  printDebugMessage("BLE Connected", D_DEBUG);
+  printDebugMessage("BLE Connected", D_INFO);
 
   BLE.setConnectionInterval(CONNECTION_INTERVAL_MIN,CONNECTION_INTERVAL_MAX);
 
@@ -53,7 +63,7 @@ void blePeripheralConnectHandler(BLEDevice central) {
 
 void blePeripheralDisconnectHandler(BLEDevice central) {
   // central disconnected event handler
-  printDebugMessage("BLE Disconnected", D_DEBUG);
+  printDebugMessage("BLE Disconnected", D_INFO);
 }
 
 void switchCharacteristicWritten(BLEDevice central, BLECharacteristic characteristic) {

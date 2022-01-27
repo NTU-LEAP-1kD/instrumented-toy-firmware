@@ -104,6 +104,17 @@ struct struct_online {
   bool serialOutput = false;
 };
 
+struct struct_current {
+  struct battery_state {
+    uint8_t percentage;
+    uint16_t mv;
+    bool is_charging;
+  };
+
+  uint64_t ms;
+  battery_state battery;
+};
+
 extern struct_settings settings;
 extern struct_online online; 
-extern uint64_t current_ms;
+extern struct_current current;

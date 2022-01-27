@@ -56,7 +56,7 @@ uint64_t getSyncedMillis(){
 uint64_t calcAdjustedCtsMillis(){
     uint64_t cts_ms;
     cts_ms = ctsMillis(received_cts.time);
-    cts_ms += (current_ms - received_cts_timestamp_millis);
+    cts_ms += (current.ms - received_cts_timestamp_millis);
     return cts_ms; 
 }
 

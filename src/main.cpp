@@ -3,9 +3,11 @@
 #include "comms/tasks.h"
 #include "sensors/tasks.h"
 #include "logging/tasks.h"
+#include "power/tasks.h"
 
 void setup() {
-  digitalWrite(PIN_STAT_LED, HIGH);
+  initPins();
+  
   initUSB();
   initSD();
   initDebugging();
@@ -20,9 +22,10 @@ void setup() {
 }
 
 void loop() {
-  current_ms = millis();
+  current.ms = millis();
   //loopTaskReadPressureSensor();
   //loopTaskLogImu();
+  loopTaskReadBattery();
   loopTaskPollBle();
   loopTaskReadCts();
   loopTaskSyncRtc(); 
