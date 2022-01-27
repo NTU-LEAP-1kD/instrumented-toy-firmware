@@ -22,7 +22,7 @@ void setup() {
 }
 
 void loop() {
-  current_ms = millis();
+  current.ms = millis();
   //loopTaskReadPressureSensor();
   //loopTaskLogImu();
   loopTaskReadBattery();

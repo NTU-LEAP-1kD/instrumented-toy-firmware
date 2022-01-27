@@ -13,13 +13,13 @@ uint32_t rtt;
 
 void loopTaskReadCts(){ 
     static uint32_t prev_read_ms; 
-    if(current_ms - prev_read_ms > CTS_READ_INTERVAL){
+    if(current.ms - prev_read_ms > CTS_READ_INTERVAL){
         BLEDevice central = BLE.central();
         if(readCurrentTimeService(central.service(CTS_SERVICE))){
-            prev_read_ms = current_ms + rtt;
-            received_cts_timestamp_millis = current_ms + (rtt/2);
+            prev_read_ms = current.ms + rtt;
+            received_cts_timestamp_millis = current.ms + (rtt/2);
         }
-        current_ms = millis();
+        current.ms = millis();
     }
 }
 

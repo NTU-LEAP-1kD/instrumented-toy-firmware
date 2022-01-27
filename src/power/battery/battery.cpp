@@ -6,8 +6,8 @@
 
 void loopTaskReadBattery(){
     static uint64_t prev_millis = 0;
-    if(current_ms - prev_millis > BATTERY_READ_INTERVAL_MS){
-        prev_millis = current_ms; 
+    if(current.ms - prev_millis > BATTERY_READ_INTERVAL_MS){
+        prev_millis = current.ms; 
         debugLogBattery(smartFilterMv(readBatteryMv()));
     }
 }
