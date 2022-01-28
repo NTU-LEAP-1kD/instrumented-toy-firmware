@@ -54,7 +54,7 @@ uint16_t filterMv(uint16_t mv){
 // From OpenLog Artemis Sensors.ino
 uint16_t readBatteryMv(){
     int div3 = analogRead(PIN_VIN_MONITOR); //Read VIN across a 1/3 resistor divider
-    uint16_t mv = float(div3) * DIV3_TO_MV; 
+    uint16_t mv = float(div3) * DIV3_TO_MV + VOLTAGE_DROP_MV; 
     return mv;
 }
 
