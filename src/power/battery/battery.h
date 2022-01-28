@@ -6,6 +6,8 @@ const uint8_t BATTERY_FILTER_FACTOR = 6;
 //Convert 1/3 VIN to VIN (14-bit resolution) and
 // Correct for divider impedance (determined experimentally)
 const float DIV3_TO_MV = settings.vinCorrectionFactor * 1000.0 * 3.0 * 2.0 / 16384.0; 
+ //Added to the battery reading to correct for voltage drop (#45)                                                
+const uint16_t VOLTAGE_DROP_MV = 200;
 
 //From https://blog.ampow.com/lipo-voltage-chart/
 const uint16_t LIPO_DISCHARGE_CURVE[] = {
@@ -13,7 +15,7 @@ const uint16_t LIPO_DISCHARGE_CURVE[] = {
     3980,3950,3910,3870,3850,
     3840,3820,3800,3790,3770,
     3750,3730,3710,3690,3610,
-    3400
+    3270
 };
 const uint8_t LIPO_DISCHARGE_CURVE_RESOLUTION = sizeof(LIPO_DISCHARGE_CURVE) / 
                                                 sizeof(LIPO_DISCHARGE_CURVE[0]) - 1;
