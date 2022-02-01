@@ -1,6 +1,6 @@
 # instrumented-toy-firmware
- 
-# Setup
+
+## Setup
 Prerequisites: 
 1. Setup VSCode with PlatformIO extension (https://docs.platformio.org/en/latest/ide/vscode.html#quick-start)
 2. Install board definitions with instructions (https://github.com/nigelb/platform-apollo3blue#install)
