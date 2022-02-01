@@ -2,7 +2,10 @@
 #include "pins.h"
 #include "utils/utils.h"
 
-//This is all the settings that can be set on OpenLog. It's recorded to NVM and the config file.
+/*
+This was copied from the OpenLog codebase. Not all of it is required for our code to run,
+but it's helpful to keep because their other functions rely on a lot of it. 
+*/
 struct struct_settings {
   int sizeOfSettings = 0; //sizeOfSettings **must** be the first entry and must be int
   int olaIdentifier = OLA_IDENTIFIER; // olaIdentifier **must** be the second entry
@@ -94,7 +97,7 @@ struct struct_settings {
   bool printGNSSDebugMessages = false;
 };
 
-//These are the devices on board OpenLog that may be on or offline.
+//Devices on board OpenLog that may be on or offline.
 struct struct_online {
   bool microSD = false;
   bool dataLogging = false;
@@ -104,6 +107,7 @@ struct struct_online {
   bool serialOutput = false;
 };
 
+//Contains other global states that could be used
 struct struct_current {
   struct battery_state {
     uint8_t percentage;
