@@ -7,6 +7,7 @@
 
 void setup() {
   initPins();
+  initCliCmds();
   
   initUSB();
   initSD();
@@ -25,6 +26,7 @@ void loop() {
   current.ms = millis();
   //loopTaskReadPressureSensor();
   //loopTaskLogImu();
+  loopTaskParseCmds();
   loopTaskReadBattery();
   loopTaskPollBle();
   loopTaskReadCts();
