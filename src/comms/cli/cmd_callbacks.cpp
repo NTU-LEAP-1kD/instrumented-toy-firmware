@@ -1,18 +1,25 @@
 #include <SimpleCLI.h>
 #include "cmd_callbacks.h"
+#include "../fileTransfer/fileTransfer.h"
 
 /* Callback template from README
-void myCallback(cmd* commandPointer) {
-  Command cmd(commandPointer); // Create wrapper class instance for the pointer
+void myCallback(cmd* c) {
+  Command cmd(c); // Create wrapper class instance for the pointer
   // ..
 }
 */ 
 
 
-void pingCallback(cmd* commandPointer) {
-  Command cmd(commandPointer); // Create wrapper class instance for the pointer
+void pingCallback(cmd* c) {
+  Command cmd(c); // Create wrapper class instance for the pointer
   // ..
   Serial.println("Ping");
+}
+
+void xferCallback(cmd* c) {
+  Command cmd(c); // Create wrapper class instance for the pointer
+  // ..
+  sdCardMenu();
 }
 
 void errorCallback(cmd_error* e) {

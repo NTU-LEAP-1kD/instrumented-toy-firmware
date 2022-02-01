@@ -37,8 +37,8 @@ struct struct_settings {
   bool correctForDST = false;
   bool americanDateStyle = false;
   bool hour24Style = true;
-  int  serialTerminalBaudRate = 115200;
-  int  serialLogBaudRate = 9600;
+  unsigned long serialTerminalBaudRate = 400000UL; //File transfer failed at 500000
+  unsigned long serialLogBaudRate = 9600;
   bool showHelperText = true;
   bool logA11 = false;
   bool logA12 = false;
