@@ -3,6 +3,7 @@
 #include "logging/sdcard/sdcard.h"
 #include "logging/sdfile/sdfile.h"
 #include "logging/helpers/helpers.h"
+#include "logging/timestamp/timestamp.h"
 
 void initDataLogging();
 void printHelperText(bool terminalOnly);
@@ -23,7 +24,8 @@ void initDataLogging()
       online.dataLogging = false;
       return;
     }
-    //updateDataFileCreate(&sensorDataFile); // Update the file create time & date
+    updateDataFileCreate(&sensorDataFile);
+    updateDataFileAccess(&sensorDataFile);
     online.dataLogging = true;
     digitalWrite(PIN_STAT_LED, LOW);
     printHelperText(false);

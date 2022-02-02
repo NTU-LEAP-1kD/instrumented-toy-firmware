@@ -3,6 +3,7 @@
 #include "logging/sdcard/sdcard.h"
 #include "logging/sdfile/sdfile.h"
 #include "logging/helpers/helpers.h"
+#include "logging/timestamp/timestamp.h"
 #include "debug.h"
 
 void initDebugging(){
@@ -20,7 +21,8 @@ void initDebugging(){
       return;
     }
     printDebugMessage("File Creation", D_DEBUG);
-    //updateDataFileCreate(&debugDataFile); // Update the file create time & date
+    updateDataFileCreate(&debugDataFile);
+    updateDataFileAccess(&sensorDataFile);
   }
 }
 
