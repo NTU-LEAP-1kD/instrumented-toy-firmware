@@ -9,6 +9,7 @@ but it's helpful to keep because their other functions rely on a lot of it.
 struct struct_settings {
   int sizeOfSettings = 0; //sizeOfSettings **must** be the first entry and must be int
   int olaIdentifier = OLA_IDENTIFIER; // olaIdentifier **must** be the second entry
+  uint64_t olaChipId;
   int nextSerialLogNumber = 1;
   int nextDataLogNumber = 1;
   //uint32_t: Largest is 4,294,967,295 or 4,294s or 71 minutes between readings.
@@ -122,3 +123,5 @@ struct struct_current {
 extern struct_settings settings;
 extern struct_online online; 
 extern struct_current current;
+
+void initChipId();
