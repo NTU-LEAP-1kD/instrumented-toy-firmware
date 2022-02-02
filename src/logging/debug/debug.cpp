@@ -6,11 +6,13 @@
 #include "debug.h"
 
 void initDebugging(){
+  char debugLogHeader[32]; 
   if (online.microSD == true && settings.logDebug == true)
   {
     //If we don't have a file yet, create one. Otherwise, re-open the last used file
     if (strlen(debugDataFileName) == 0)
-      strcpy(debugDataFileName, findNextAvailableLog(settings.nextDataLogNumber, "debugLog"));
+      sprintf(debugLogHeader,"dbg_%llx_",settings.olaChipId);
+      strcpy(debugDataFileName, findNextAvailableLog(settings.nextDataLogNumber, debugLogHeader));
 
     if (debugDataFile.open(debugDataFileName, O_CREAT | O_APPEND | O_WRITE) == false)
     {
