@@ -123,5 +123,3 @@ struct struct_current {
 extern struct_settings settings;
 extern struct_online online; 
 extern struct_current current;
-
-void initChipId();
