@@ -9,11 +9,13 @@ void printHelperText(bool terminalOnly);
 
 void initDataLogging()
 {
+  char dataLogHeader[32];
   if (online.microSD == true && settings.logData == true)
   {
     //If we don't have a file yet, create one. Otherwise, re-open the last used file
     if (strlen(sensorDataFileName) == 0)
-      strcpy(sensorDataFileName, findNextAvailableLog(settings.nextDataLogNumber, "dataLog"));
+      sprintf(dataLogHeader,"dat_%llx_",settings.olaChipId);
+      strcpy(sensorDataFileName, findNextAvailableLog(settings.nextDataLogNumber, dataLogHeader));
 
     if (sensorDataFile.open(sensorDataFileName, O_CREAT | O_APPEND | O_WRITE) == false)
     {

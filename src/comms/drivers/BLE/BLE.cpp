@@ -15,7 +15,9 @@ void initBLE(){
     printDebugMessage("BLE Init Failed", D_FATAL);
   }
  // set the local name peripheral advertises
-  BLE.setLocalName(BLE_PERIPHERAL_NAME);
+  char ble_peripheral_name[20];
+  sprintf(ble_peripheral_name, "OLA-%llx",settings.olaChipId);
+  BLE.setLocalName(ble_peripheral_name);
   
   // set the UUID for the service this peripheral advertises
   BLE.setAdvertisedService(serialLogService);

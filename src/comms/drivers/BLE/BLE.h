@@ -1,6 +1,5 @@
 #pragma once
 
-#define BLE_PERIPHERAL_NAME "OLA"
 #define CTS_SERVICE "1805"
 #define CTS_CHAR_ID "2a2b"
 

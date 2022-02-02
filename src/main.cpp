@@ -10,6 +10,7 @@ void setup() {
   initCliCmds();
   
   initUSB();
+  initChipId();
   initSD();
   initDebugging();
 
