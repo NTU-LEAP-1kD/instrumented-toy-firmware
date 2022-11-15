@@ -36,3 +36,6 @@ lib/SD/doc/
 
 .vscode/c_cpp_properties.json
 .vscode/launch.json
+
+*.mp4
+*.avi

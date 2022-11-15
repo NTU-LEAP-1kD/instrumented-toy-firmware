@@ -190,7 +190,11 @@ void printBufToFile(char* buf, FsFile &file){
         {
           if (settings.printDebugMessages == true)
           {
-            Serial.println("*** sensorDataFile.write data length mismatch! ***");
+            Serial.print("*** sensorDataFile.write data length mismatch! buf:");
+            Serial.print(strlen(buf));
+            Serial.print(" wrote: ");
+            Serial.print(recordLength);
+            Serial.println(" ***");
           }
         }
         file.sync();
