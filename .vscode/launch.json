@@ -12,10 +12,11 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "c:/Git/School/instrumented-toy-firmware/.pio/build/SparkFun_RedBoard_Artemis_ATP/program.exe",
+            "executable": "C:/Git/School/instrumented-toy-firmware/.pio/build/SparkFun_RedBoard_Artemis_ATP/program.exe",
             "projectEnvName": "SparkFun_RedBoard_Artemis_ATP",
-            "toolchainBinDir": "C:/Users/vicgd/.platformio/packages/toolchain-gccarmnoneeabi/bin",
+            "toolchainBinDir": "C:/Users/vicgd/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/bin",
             "internalConsoleOptions": "openOnSessionStart",
+            "svdPath": "C:/Users/vicgd/.platformio/platforms/apollo3blue/misc/svd/apollo3.svd",
             "preLaunchTask": {
                 "type": "PlatformIO",
                 "task": "Pre-Debug"
@@ -25,19 +26,21 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "c:/Git/School/instrumented-toy-firmware/.pio/build/SparkFun_RedBoard_Artemis_ATP/program.exe",
+            "executable": "C:/Git/School/instrumented-toy-firmware/.pio/build/SparkFun_RedBoard_Artemis_ATP/program.exe",
             "projectEnvName": "SparkFun_RedBoard_Artemis_ATP",
-            "toolchainBinDir": "C:/Users/vicgd/.platformio/packages/toolchain-gccarmnoneeabi/bin",
-            "internalConsoleOptions": "openOnSessionStart"
+            "toolchainBinDir": "C:/Users/vicgd/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/bin",
+            "internalConsoleOptions": "openOnSessionStart",
+            "svdPath": "C:/Users/vicgd/.platformio/platforms/apollo3blue/misc/svd/apollo3.svd"
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
-            "executable": "c:/Git/School/instrumented-toy-firmware/.pio/build/SparkFun_RedBoard_Artemis_ATP/program.exe",
+            "executable": "C:/Git/School/instrumented-toy-firmware/.pio/build/SparkFun_RedBoard_Artemis_ATP/program.exe",
             "projectEnvName": "SparkFun_RedBoard_Artemis_ATP",
-            "toolchainBinDir": "C:/Users/vicgd/.platformio/packages/toolchain-gccarmnoneeabi/bin",
+            "toolchainBinDir": "C:/Users/vicgd/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/bin",
             "internalConsoleOptions": "openOnSessionStart",
+            "svdPath": "C:/Users/vicgd/.platformio/platforms/apollo3blue/misc/svd/apollo3.svd",
             "loadMode": "manual"
         }
     ]

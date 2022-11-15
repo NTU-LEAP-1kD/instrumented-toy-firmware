@@ -12,18 +12,13 @@ struct struct_settings {
   uint64_t olaChipId;
   int nextSerialLogNumber = 1;
   int nextDataLogNumber = 1;
-  //uint32_t: Largest is 4,294,967,295 or 4,294s or 71 minutes between readings.
-  //uint64_t: Largest is 9,223,372,036,854,775,807 or 9,223,372,036,854s or 292,471 years between readings.
-  uint64_t usBetweenReadings = 100000ULL; //Default to 100,000us = 100ms = 10 readings per second.
-  //100,000 / 1000 = 100ms. 1 / 100ms = 10Hz
-  //recordPerSecond (Hz) = 1 / ((usBetweenReadings / 1000UL) / 1000UL)
-  //recordPerSecond (Hz) = 1,000,000 / usBetweenReadings
+  uint64_t usBetweenReadings = 1ULL; 
   bool logMaxRate = false;
   bool enableRTC = true;
   bool enableIMU = true;
   bool enableSD = true;
   bool enableTerminalOutput = false;
-  bool logDate = true;
+  bool logDate = false;
   bool logTime = true;
   bool logData = true;
   bool logDebug = true;
@@ -34,7 +29,7 @@ struct struct_settings {
   bool logIMUTemp = true;
   bool logRTC = true;
   bool logHertz = true;
-  bool logBarometer = true;
+  bool logBarometer = false;
   bool correctForDST = false;
   bool americanDateStyle = false;
   bool hour24Style = true;
@@ -71,9 +66,9 @@ struct struct_settings {
   bool fallingEdgeTrigger = true; // Default to falling-edge triggering (If false, triggering will be rising-edge)
   bool imuAccDLPF = false; // IMU accelerometer Digital Low Pass Filter - default to disabled
   bool imuGyroDLPF = false; // IMU gyro Digital Low Pass Filter - default to disabled
-  int imuAccFSS = 0; // IMU accelerometer full scale - default to gpm2 (ICM_20948_ACCEL_CONFIG_FS_SEL_e)
+  int imuAccFSS = 3; // IMU accelerometer full scale - default to gpm2 (ICM_20948_ACCEL_CONFIG_FS_SEL_e)
   int imuAccDLPFBW = 7; // IMU accelerometer DLPF bandwidth - default to acc_d473bw_n499bw (ICM_20948_ACCEL_CONFIG_DLPCFG_e)
-  int imuGyroFSS = 0; // IMU gyro full scale - default to 250 degrees per second (ICM_20948_GYRO_CONFIG_1_FS_SEL_e)
+  int imuGyroFSS = 3; // IMU gyro full scale - default to 250 degrees per second (ICM_20948_GYRO_CONFIG_1_FS_SEL_e)
   int imuGyroDLPFBW = 7; // IMU gyro DLPF bandwidth - default to gyr_d361bw4_n376bw5 (ICM_20948_GYRO_CONFIG_1_DLPCFG_e)
   bool logMicroseconds = false; // Log micros()
   bool useTxRxPinsForTerminal = false; // If true, the terminal is echo'd to the Tx and Rx pins. Note: setting this to true will _permanently_ disable serial logging and analog input on those pins!
